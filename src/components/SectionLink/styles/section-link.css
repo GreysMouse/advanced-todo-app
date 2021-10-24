@@ -1,0 +1,9 @@
+.section-link {
+  display: block;
+  padding: 10px 10px;
+  text-decoration: none;
+}
+
+.section-link:hover {
+  background-color: #444;
+}

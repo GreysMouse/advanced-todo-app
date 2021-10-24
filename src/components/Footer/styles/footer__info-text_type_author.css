@@ -1,0 +1,4 @@
+.footer__info-text_type_author {
+  grid-column: 2/3;
+  justify-self: center;
+}

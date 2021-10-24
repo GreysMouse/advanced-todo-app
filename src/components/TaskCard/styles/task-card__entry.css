@@ -1,0 +1,15 @@
+.task-card__entry {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.6px;
+  color: #000;
+  overflow-wrap: break-word;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+
+.task-card__entry::first-letter {
+  text-transform: capitalize;
+}

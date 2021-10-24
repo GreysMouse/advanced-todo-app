@@ -1,0 +1,4 @@
+.footer__info-text_type_date {
+  grid-column: 3/4;
+  justify-self: flex-end;
+}

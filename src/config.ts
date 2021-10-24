@@ -1,3 +1,5 @@
+export const CURRENT_YEAR = new Date().getFullYear();
+
 export const NOTE_MIN_LENGTH = 1;
 export const NOTE_MAX_LENGTH = 96;
 
