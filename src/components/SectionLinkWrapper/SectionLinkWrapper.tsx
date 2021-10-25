@@ -1,34 +1,32 @@
-import { useSelector } from 'react-redux';
-import RootState from '../../store';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { activePathSetAction } from '../../utils/pathRouterSlice';
 
 import SectionLink from '../SectionLink/SectionLink';
 
-// const mapStateToProps = (state: any) => {
-//   return {
-//     isActive: true
-//   }
-// }
-
-// const mapDispatchToProps= (dispatch: any) => {
-//   return {
-//     setActivePage: () => {
-//       dispatch()
-//     }
-//   }
-// }
-interface ISectionLinkWrapperProps {
-  sectionName: string;
-  path: string;
-}
-
+import { IState } from '../../types/state';
+import { TDispatch } from '../../store';
+import { ISectionLinkWrapperProps } from '../../types/sectionLinkWrapper';
 
 const SectionLinkWrapper= ({ sectionName, path }: ISectionLinkWrapperProps): JSX.Element => {
-  const selectedPath = useSelector((state: typeof RootState) => state.sectionLink.activePath);
+
+  const selectedPath = useSelector<IState, string>((state: IState) => state.pathRouter.activePath);
+  
+  const dispatch = useDispatch<TDispatch>();
 
   const isActive = selectedPath === path;
 
+  const handleLinkClick = (): void => {
+    dispatch(activePathSetAction(path));
+  }
+
   return (
-    <SectionLink sectionName={ sectionName } path={ path } isActive={ isActive } />
+    <SectionLink
+      sectionName={ sectionName }
+      path={ path }
+      isActive={ isActive }
+      onClick={ handleLinkClick }
+    />
   )
 }
 

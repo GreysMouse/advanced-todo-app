@@ -1,20 +1,23 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import { ISectionLinkProps } from '../../types/sectionLink';
 
 import './styles/section-link.css';
 import './styles/section-link_active.css';
 import './styles/section-link__section-name.css';
+import './styles/section-link__section-name_active.css';
 
-interface ISectionLinkProps {
-  sectionName: string;
-  path: string;
-  isActive: boolean;
-}
-
-const SectionLink = ({ sectionName, path, isActive }: ISectionLinkProps): JSX.Element => {
+const SectionLink = ({ sectionName, path, isActive, onClick }: ISectionLinkProps): JSX.Element => {
   return (
-    <NavLink className='section-link' activeClassName='section-link_active' exact to={ path }>
-      <p className='section-link__section-name'>{ isActive ? sectionName : 'ss' }</p>
-    </NavLink>
+    <Link
+      className={ 'section-link' + (isActive ? ' section-link_active': '') }
+      to={ path }
+      onClick={ onClick }
+    >
+      <p className={ 'section-link__section-name' + (isActive ? ' section-link__section-name_active' : '' ) }>
+        { sectionName }
+      </p>
+    </Link>
   );
 }
 

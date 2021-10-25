@@ -1,5 +1,8 @@
 export const CURRENT_YEAR = new Date().getFullYear();
 
+export const INITIAL_SECTION_NAME = 'My TODOs';
+export const INITIAL_SECTION_PATH = '/section-initial';
+
 export const NOTE_MIN_LENGTH = 1;
 export const NOTE_MAX_LENGTH = 96;
 

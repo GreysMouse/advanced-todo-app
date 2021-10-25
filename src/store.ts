@@ -1,11 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import pathRouterReducer from './utils/pathRouterSlice';
+import { INITIAL_SECTION_PATH } from './config';
+
+import { activePathSetReducer } from './utils/pathRouterSlice';
+
+const initialState = {
+  pathRouter: {
+    activePath: INITIAL_SECTION_PATH
+  }
+}
 
 const store = configureStore({
+  preloadedState: initialState,
   reducer: {
-    sectionLink: pathRouterReducer
-  },
+    pathRouter: activePathSetReducer
+  }  
 });
+
+type TDispatch = typeof store.dispatch;
+
+export type { TDispatch };
 
 export default store;

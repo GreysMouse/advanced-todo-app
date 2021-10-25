@@ -1,13 +1,10 @@
 import React from 'react';
 
+import { ISidebarProps } from '../../types/sidebar';
+
 import './styles/sidebar.css';
 import'./styles/sidebar__header.css';
 import './styles/sidebar__caption.css';
-
-
-interface ISidebarProps {
-  caption: string;
-};
 
 const Sidebar = ({ caption, children }: React.PropsWithChildren<ISidebarProps>): JSX.Element => {
   return (
