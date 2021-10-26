@@ -1,3 +1,8 @@
 .sections-links-list {
-  padding: 12px 0;
+  flex-grow: 1;
+  height: 100vh;
+  box-sizing: border-box;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+  overflow-y: scroll;
 }

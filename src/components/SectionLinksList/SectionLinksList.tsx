@@ -10,6 +10,28 @@ const SectionLinksList = (): JSX.Element => {
       <SectionLinkWrapper sectionName={ INITIAL_SECTION_NAME } path={ INITIAL_SECTION_PATH } />
       <SectionLinkWrapper sectionName='Work' path='/b' />
       <SectionLinkWrapper sectionName='Urgent' path='/c' />
+      <SectionLinkWrapper sectionName='Work' path='/b' />
+      <SectionLinkWrapper sectionName='Urgent' path='/c' />
+      <SectionLinkWrapper sectionName='Work' path='/b' />
+      <SectionLinkWrapper sectionName='Urgent' path='/c' />
+      <SectionLinkWrapper sectionName='Work' path='/b' />
+      <SectionLinkWrapper sectionName='Urgent' path='/c' />
+      {/* <SectionLinkWrapper sectionName='Work' path='/b' />
+      <SectionLinkWrapper sectionName='Urgent' path='/c' />
+      <SectionLinkWrapper sectionName='Work' path='/b' />
+      <SectionLinkWrapper sectionName='Urgent' path='/c' />
+      <SectionLinkWrapper sectionName='Work' path='/b' />
+      <SectionLinkWrapper sectionName='Urgent' path='/c' />
+      <SectionLinkWrapper sectionName='Work' path='/b' />
+      <SectionLinkWrapper sectionName='Urgent' path='/c' />
+      <SectionLinkWrapper sectionName='Work' path='/b' />
+      <SectionLinkWrapper sectionName='Urgent' path='/c' />
+      <SectionLinkWrapper sectionName='Work' path='/b' />
+      <SectionLinkWrapper sectionName='Urgent' path='/c' />
+      <SectionLinkWrapper sectionName='Work' path='/b' />
+      <SectionLinkWrapper sectionName='Urgent' path='/c' />
+      <SectionLinkWrapper sectionName='Work' path='/b' />
+      <SectionLinkWrapper sectionName='Urgent' path='/c' /> */}
     </div>
   );
 }
