@@ -1,37 +1,19 @@
-import { INITIAL_SECTION_NAME, INITIAL_SECTION_PATH } from '../../config';
-
 import SectionLinkWrapper from '../SectionLinkWrapper/SectionLinkWrapper';
+
+import { ISectionLinksListProps } from '../../types/sectionLinksList';
 
 import './styles/sections-links-list.css';
 
-const SectionLinksList = (): JSX.Element => {
+const SectionLinksList = ({ sections }: ISectionLinksListProps): JSX.Element => {
   return (
     <div className='sections-links-list'>
-      <SectionLinkWrapper sectionName={ INITIAL_SECTION_NAME } path={ INITIAL_SECTION_PATH } />
-      <SectionLinkWrapper sectionName='Work' path='/b' />
-      <SectionLinkWrapper sectionName='Urgent' path='/c' />
-      <SectionLinkWrapper sectionName='Work' path='/b' />
-      <SectionLinkWrapper sectionName='Urgent' path='/c' />
-      <SectionLinkWrapper sectionName='Work' path='/b' />
-      <SectionLinkWrapper sectionName='Urgent' path='/c' />
-      <SectionLinkWrapper sectionName='Work' path='/b' />
-      <SectionLinkWrapper sectionName='Urgent' path='/c' />
-      {/* <SectionLinkWrapper sectionName='Work' path='/b' />
-      <SectionLinkWrapper sectionName='Urgent' path='/c' />
-      <SectionLinkWrapper sectionName='Work' path='/b' />
-      <SectionLinkWrapper sectionName='Urgent' path='/c' />
-      <SectionLinkWrapper sectionName='Work' path='/b' />
-      <SectionLinkWrapper sectionName='Urgent' path='/c' />
-      <SectionLinkWrapper sectionName='Work' path='/b' />
-      <SectionLinkWrapper sectionName='Urgent' path='/c' />
-      <SectionLinkWrapper sectionName='Work' path='/b' />
-      <SectionLinkWrapper sectionName='Urgent' path='/c' />
-      <SectionLinkWrapper sectionName='Work' path='/b' />
-      <SectionLinkWrapper sectionName='Urgent' path='/c' />
-      <SectionLinkWrapper sectionName='Work' path='/b' />
-      <SectionLinkWrapper sectionName='Urgent' path='/c' />
-      <SectionLinkWrapper sectionName='Work' path='/b' />
-      <SectionLinkWrapper sectionName='Urgent' path='/c' /> */}
+    {
+      sections.map((section) => {
+        return (
+          <SectionLinkWrapper key={ section._id } sectionName={ section.name } path={ section.path } />
+        )
+      })
+    }
     </div>
   );
 }

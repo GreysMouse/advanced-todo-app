@@ -1,23 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { INITIAL_SECTION_PATH } from '../config';
+
 import { IPathRouter } from '../types/state';
 
 const initialState = {
-  activePath: '/',
+  activePath: INITIAL_SECTION_PATH
 }
 
 const pathRouterSlice = createSlice({
   name: 'pathRouter',
   initialState,
   reducers: {
-    activePathSetAction: (state: IPathRouter, action: { type: string, payload: string }) => {
+    setActivePath: (state: IPathRouter, action: { type: string, payload: string }) => {
       state.activePath = action.payload;
     }
   }
 });
 
-const { activePathSetAction } = pathRouterSlice.actions;
+const { setActivePath } = pathRouterSlice.actions;
 
-const activePathSetReducer = pathRouterSlice.reducer;
+const pathRouterReducer = pathRouterSlice.reducer;
 
-export { activePathSetAction, activePathSetReducer }
+export { setActivePath, pathRouterReducer }

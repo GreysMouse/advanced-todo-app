@@ -1,17 +1,18 @@
 import Sidebar from '../Sidebar/Sidebar';
 import SidebarHeader from '../SidebarHeader/SidebarHeader';
-import SectionLinksList from '../SectionLinksList/SectionLinksList';
+import SectionLinksListWrapper from '../SectionLinksListWrapper/SectionLinksListWrapper';
 import SectionAddButton from '../SectionAddButton/SectionAddButton';
 import TasksList from '../TasksList/TasksList';
 
 import './styles/main.css';
+
 
 const Main = (): JSX.Element => {
   return (
     <main className='main'>
       <Sidebar>
         <SidebarHeader caption='SECTIONS' />
-        <SectionLinksList />
+        <SectionLinksListWrapper />
         <SectionAddButton />
       </Sidebar>
       <TasksList />

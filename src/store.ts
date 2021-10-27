@@ -1,19 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { INITIAL_SECTION_PATH } from './config';
-
-import { activePathSetReducer } from './utils/pathRouterSlice';
-
-const initialState = {
-  pathRouter: {
-    activePath: INITIAL_SECTION_PATH
-  }
-}
+import { pathRouterReducer } from './utils/pathRouterSlice';
+import { sectionsReducer } from './utils/sectionsSlice';
 
 const store = configureStore({
-  preloadedState: initialState,
   reducer: {
-    pathRouter: activePathSetReducer
+    pathRouter: pathRouterReducer,
+    sections: sectionsReducer
   }  
 });
 
