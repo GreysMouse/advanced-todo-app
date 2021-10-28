@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { closeInputField } from '../../utils/sectionsSlice';
@@ -16,10 +17,27 @@ const SectionAddFormWrapper = (): JSX.Element => {
     dispatch(closeInputField());
   }
 
+  const handleEscKeyUp = (evt: React.KeyboardEvent): void => {
+    evt.stopPropagation();
+
+    if (evt.key === 'Escape') dispatch(closeInputField());
+  }
+
+  const handleSubmit = (evt: React.FormEvent): void => {
+    evt.preventDefault();
+
+    dispatch(closeInputField());
+    console.log('sub')
+  }
+
   return (
     <>
       {
-        isInputFieldOpen && <SectionAddForm onFocusLoss={ handleFocusLoss } />
+        isInputFieldOpen && <SectionAddForm
+          onFocusLoss={ handleFocusLoss }
+          onEscKeyUp={ handleEscKeyUp }
+          onSubmit={ handleSubmit }
+        />
       }      
     </>
   );

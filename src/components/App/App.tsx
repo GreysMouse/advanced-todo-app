@@ -10,7 +10,7 @@ import './styles/app__container.css';
 function App() {
   return (
     <div className='app'>
-      <div className='app__container'>
+      <div className='app__container' onKeyUp={ () => console.log('dw') }>
         <Header />
         <Main />
         <Footer />
