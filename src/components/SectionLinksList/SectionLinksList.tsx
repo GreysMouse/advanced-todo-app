@@ -1,4 +1,5 @@
 import SectionLinkWrapper from '../SectionLinkWrapper/SectionLinkWrapper';
+import SectionAddFormWrapper from '../SectionAddFormWrapper/SectionAddFormWrapper';
 
 import { ISectionLinksListProps } from '../../types/sectionLinksList';
 
@@ -14,6 +15,7 @@ const SectionLinksList = ({ sections }: ISectionLinksListProps): JSX.Element => 
         )
       })
     }
+    <SectionAddFormWrapper />
     </div>
   );
 }

@@ -25,7 +25,7 @@ const SectionLinkWrapper= ({ sectionName, path }: ISectionLinkWrapperProps): JSX
     path={ path }
     isActive={ isActive }
     onClick={ handleLinkClick }
-  />
+  />;
 }
 
 export default SectionLinkWrapper;

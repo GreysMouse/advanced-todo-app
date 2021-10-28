@@ -1,16 +1,17 @@
 import { ISection } from './section';
 
-interface IPathRouter {
+interface IPathRouterState {
   activePath: string;
 }
 
-interface ISections {
+interface ISectionsState {
   allSections: ISection[];
+  isInputFieldOpen: boolean;
 }
 
 interface IState {
-  pathRouter: IPathRouter,
-  sections: ISections
+  pathRouter: IPathRouterState,
+  sections: ISectionsState
 }
 
-export type { IState, IPathRouter, ISections };
+export type { IState, IPathRouterState, ISectionsState };

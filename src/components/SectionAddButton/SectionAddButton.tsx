@@ -1,8 +1,15 @@
+import { ISectionAddButtonProps } from '../../types/sectionAddButton';
+
 import './styles/section-add-button.css';
 
-const SectionAddButton = (): JSX.Element => {
+const SectionAddButton = ({ onClick }: ISectionAddButtonProps): JSX.Element => {
   return (
-    <button className='section-add-button'>+ Add new section</button>
+    <button
+      className='section-add-button'
+      onClick={ onClick }
+    >
+      + Add new section
+    </button>
   );
 }
 

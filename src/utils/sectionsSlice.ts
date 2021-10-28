@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { INITIAL_SECTION_NAME, INITIAL_SECTION_PATH } from '../config';
 
 import { ISection } from '../types/section';
-import { ISections } from '../types/state';
+import { ISectionsState } from '../types/state';
 
 const initialState = {
   allSections: [{
@@ -20,23 +20,27 @@ const initialState = {
     _id: '2',
     name: 'mouser',
     path: '/section-mouser'
-  }]
+  }],
+
+  isInputFieldOpen: false
 }
 
 const sectionsSlice = createSlice({
   name: 'sections',
   initialState,
   reducers: {
-    addNewSection: (state: ISections, action: { type: string, payload: ISection }) => {
-      const updatedSections = [ ...state.allSections, action.payload ];
+    openInputField: (state: ISectionsState, action: { type: string }) => {
+      state.isInputFieldOpen = true;
+    },
 
-      state.allSections = updatedSections;
+    addNewSection: (state: ISectionsState, action: { type: string, payload: ISection }) => {
+      state.allSections = [ ...state.allSections, action.payload ];;
     }
   }
 });
 
-const { addNewSection } = sectionsSlice.actions;
+const { openInputField, addNewSection } = sectionsSlice.actions;
 
 const sectionsReducer = sectionsSlice.reducer;
 
-export { addNewSection, sectionsReducer };
+export { openInputField, addNewSection, sectionsReducer };

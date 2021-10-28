@@ -9,7 +9,7 @@ const SectionLinksListWrapper= (): JSX.Element => {
 
   const sections = useSelector<IState, ISection[]>((state: IState) => state.sections.allSections);
 
-  return <SectionLinksList sections={ sections } />
+  return <SectionLinksList sections={ sections } />;
 }
 
 export default SectionLinksListWrapper;

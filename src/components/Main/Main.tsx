@@ -1,11 +1,10 @@
 import Sidebar from '../Sidebar/Sidebar';
 import SidebarHeader from '../SidebarHeader/SidebarHeader';
 import SectionLinksListWrapper from '../SectionLinksListWrapper/SectionLinksListWrapper';
-import SectionAddButton from '../SectionAddButton/SectionAddButton';
+import SectionAddButtonWrapper from '../SectionAddButtonWrapper/SectionAddButtonWrapper';
 import TasksList from '../TasksList/TasksList';
 
 import './styles/main.css';
-
 
 const Main = (): JSX.Element => {
   return (
@@ -13,7 +12,7 @@ const Main = (): JSX.Element => {
       <Sidebar>
         <SidebarHeader caption='SECTIONS' />
         <SectionLinksListWrapper />
-        <SectionAddButton />
+        <SectionAddButtonWrapper />
       </Sidebar>
       <TasksList />
     </main>
