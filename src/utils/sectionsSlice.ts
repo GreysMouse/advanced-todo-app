@@ -29,18 +29,20 @@ const sectionsSlice = createSlice({
   name: 'sections',
   initialState,
   reducers: {
-    openInputField: (state: ISectionsState, action: { type: string }) => {
+    openInputField: (state: ISectionsState) => {
       state.isInputFieldOpen = true;
     },
-
+    closeInputField: (state: ISectionsState) => {
+      state.isInputFieldOpen = false;
+    },
     addNewSection: (state: ISectionsState, action: { type: string, payload: ISection }) => {
       state.allSections = [ ...state.allSections, action.payload ];;
     }
   }
 });
 
-const { openInputField, addNewSection } = sectionsSlice.actions;
+const { openInputField, closeInputField, addNewSection } = sectionsSlice.actions;
 
 const sectionsReducer = sectionsSlice.reducer;
 
-export { openInputField, addNewSection, sectionsReducer };
+export { openInputField, closeInputField, addNewSection, sectionsReducer };
