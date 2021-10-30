@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setActivePath } from '../../utils/pathRouterSlice';
+import { setActivePath } from '../../utils/slices/pathRouterSlice';
 
 import SectionLink from '../SectionLink/SectionLink';
 
@@ -15,7 +15,7 @@ const SectionLinkWrapper= ({ sectionName, path }: ISectionLinkWrapperProps): JSX
   const dispatch = useDispatch<TDispatch>();
 
   const isActive = selectedPath === path;
-
+  
   const handleLinkClick = (): void => {
     dispatch(setActivePath(path));
   }

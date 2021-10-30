@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { INITIAL_SECTION_PATH } from '../config';
+import { INITIAL_SECTION_PATH } from '../../config';
 
-import { IPathRouterState } from '../types/state';
+import { IPathRouterState } from '../../types/state';
 
 const initialState = {
   activePath: INITIAL_SECTION_PATH

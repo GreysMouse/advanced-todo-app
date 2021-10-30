@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { pathRouterReducer } from './utils/pathRouterSlice';
-import { sectionsReducer } from './utils/sectionsSlice';
+import { pathRouterReducer } from './utils/slices/pathRouterSlice';
+import { sectionsReducer } from './utils/slices/sectionsSlice';
 
 const store = configureStore({
   reducer: {

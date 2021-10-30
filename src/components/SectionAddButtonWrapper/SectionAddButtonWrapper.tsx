@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { openInputField } from '../../utils/sectionsSlice';
+import { openInputField } from '../../utils/slices/sectionsSlice';
 
 import SectionAddButton from '../SectionAddButton/SectionAddButton';
 

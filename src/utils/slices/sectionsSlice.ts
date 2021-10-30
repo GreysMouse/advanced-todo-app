@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { INITIAL_SECTION_NAME, INITIAL_SECTION_PATH } from '../config';
+import { INITIAL_SECTION_NAME, INITIAL_SECTION_PATH } from '../../config';
 
-import { ISection } from '../types/section';
-import { ISectionsState } from '../types/state';
+import { ISection } from '../../types/section';
+import { ISectionsState } from '../../types/state';
 
 const initialState = {
   allSections: [{
@@ -24,6 +24,8 @@ const initialState = {
 
   isInputFieldOpen: false
 }
+
+// const fetchData = createAsyncThunk('sections/fetchSections', );
 
 const sectionsSlice = createSlice({
   name: 'sections',
