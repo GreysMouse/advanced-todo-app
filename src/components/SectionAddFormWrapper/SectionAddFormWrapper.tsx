@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import isStringUnique from '../../utils/isStringUnique';
 import formatString from '../../utils/formatString';
 import { addNewSection, closeInputField } from '../../utils/slices/sectionsSlice';
+import { setActivePath } from '../../utils/slices/pathRouterSlice';
 
 import SectionAddForm from '../SectionAddForm/SectionAddForm';
 
@@ -41,7 +42,7 @@ const SectionAddFormWrapper = (): JSX.Element => {
   const handleEscKeyUp = (evt: React.KeyboardEvent): void => {
     evt.stopPropagation();
 
-    if (evt.key === 'Escape') dispatch(closeInputField());
+    if (evt.key === 'Escape') handleInputFieldClose();
   }
 
   const handleInputValueChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,12 +52,7 @@ const SectionAddFormWrapper = (): JSX.Element => {
   const handleSubmit = (evt: React.FormEvent): void => {
     evt.preventDefault();
 
-    handleInputFieldClose();
-
-    if (!isNewSectionNameUnique) {
-      console.log('Such section name is already exists!');
-      return;
-    }
+    if (!isNewSectionNameUnique) return;
 
     if (inputValue !== '') {
       const formattedInputValue = formatString(inputValue);
@@ -66,7 +62,11 @@ const SectionAddFormWrapper = (): JSX.Element => {
         name: formattedInputValue,
         path: `section-${ formattedInputValue }`
       }));
+
+      dispatch(setActivePath(`section-${ formattedInputValue }`));
     }
+
+    handleInputFieldClose();
   }
 
   return (
@@ -74,6 +74,7 @@ const SectionAddFormWrapper = (): JSX.Element => {
       {
         isInputFieldOpen && <SectionAddForm
           inputValue={ inputValue || ''}
+          isValid={ isNewSectionNameUnique }
           onInputValueChange={ handleInputValueChange }
           onFocusLoss={ handleInputFieldClose }
           onEscKeyUp={ handleEscKeyUp }

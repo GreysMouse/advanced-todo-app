@@ -17,4 +17,4 @@ export enum DEVICE_TYPES {
   LAPTOP = 'laptop'
 }
 
-export const TASKS_BASE_URL = 'http://localhost:4000';
+export const BASE_URL = 'http://localhost:4000';

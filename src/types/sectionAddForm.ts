@@ -2,6 +2,7 @@ import React from 'react';
 
 interface ISectionAddFormProps {
   inputValue: string;
+  isValid: boolean;
   onInputValueChange(evt: React.ChangeEvent<HTMLInputElement>): void;
   onFocusLoss(): void;
   onEscKeyUp(evt: React.KeyboardEvent): void;

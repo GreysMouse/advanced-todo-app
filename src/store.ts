@@ -7,7 +7,7 @@ const store = configureStore({
   reducer: {
     pathRouter: pathRouterReducer,
     sections: sectionsReducer
-  }  
+  }
 });
 
 type TDispatch = typeof store.dispatch;

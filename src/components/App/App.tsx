@@ -1,16 +1,28 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+
+import { fetchSections } from '../../utils/slices/sectionsSlice'; 
 
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 
+import { TDispatch } from '../../store';
+
 import './styles/app.css';
 import './styles/app__container.css';
 
-function App() {
+const App = (): JSX.Element => {
+
+  const dispatch = useDispatch<TDispatch>();
+  
+  React.useEffect(() => {
+    dispatch(fetchSections());
+  }, [ dispatch ]);
+
   return (
     <div className='app'>
-      <div className='app__container' onKeyUp={ () => console.log('dw') }>
+      <div className='app__container'>
         <Header />
         <Main />
         <Footer />

@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { INITIAL_SECTION_NAME, INITIAL_SECTION_PATH } from '../../config';
 
-import { ISection } from '../../types/section';
-import { ISectionsState } from '../../types/state';
+import sectionsAPI from '../APIs/sectionsAPI';
 
 const initialState = {
+  errorMessage: '',
   allSections: [{
     _id: '0',
     name: INITIAL_SECTION_NAME,
@@ -21,30 +21,50 @@ const initialState = {
     name: 'mouser',
     path: '/section-mouser'
   }],
-
   isInputFieldOpen: false
 }
 
-// const fetchData = createAsyncThunk('sections/fetchSections', );
+const getSections = () => sectionsAPI.getSections().then((sectionsList) => sectionsList);
+
+const fetchSections = createAsyncThunk('sections/setAllSections', getSections);
 
 const sectionsSlice = createSlice({
   name: 'sections',
   initialState,
   reducers: {
-    openInputField: (state: ISectionsState) => {
+    openInputField: (state) => {
       state.isInputFieldOpen = true;
     },
-    closeInputField: (state: ISectionsState) => {
+    closeInputField: (state) => {
       state.isInputFieldOpen = false;
     },
-    addNewSection: (state: ISectionsState, action: { type: string, payload: ISection }) => {
-      state.allSections = [ ...state.allSections, action.payload ];;
+    addNewSection: (state, action) => {
+      state.allSections = [ ...state.allSections, action.payload ];
     }
+  },
+  extraReducers(builder) {
+    builder
+    .addCase(fetchSections.fulfilled, (state, action) => {
+      state.allSections = action.payload;
+    })
+    .addCase(fetchSections.rejected, (state, action) => {
+      console.log(action.error.message);
+    });
   }
 });
 
-const { openInputField, closeInputField, addNewSection } = sectionsSlice.actions;
+const {
+  openInputField,
+  closeInputField,
+  addNewSection
+} = sectionsSlice.actions;
 
 const sectionsReducer = sectionsSlice.reducer;
 
-export { openInputField, closeInputField, addNewSection, sectionsReducer };
+export {
+  openInputField,
+  closeInputField,
+  addNewSection,
+  fetchSections,
+  sectionsReducer
+};
