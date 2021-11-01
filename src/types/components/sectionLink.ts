@@ -1,6 +1,7 @@
+import { ISection } from '../section';
+
 interface ISectionLinkProps {
-  sectionName: string;
-  path: string;
+  sectionData: ISection;
   isActive: boolean;
   onClick(): void;
 }

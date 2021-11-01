@@ -1,19 +1,19 @@
 import SectionLinkWrapper from '../SectionLinkWrapper/SectionLinkWrapper';
 import SectionAddFormWrapper from '../SectionAddFormWrapper/SectionAddFormWrapper';
 
-import { ISectionLinksListProps } from '../../types/sectionLinksList';
+import { ISectionsProps } from '../../types/components/sections';
 
 import './styles/sections.css';
 import './styles/sections__links-list.css';
 
-const Sections = ({ sections }: ISectionLinksListProps): JSX.Element => {
+const Sections = ({ sectionsIds }: ISectionsProps): JSX.Element => {
   return (
     <div className='sections'>
       <ul className='sections__links-list'>
       {
-        sections.map((section) => {
+        sectionsIds.map((id) => {
           return (
-            <SectionLinkWrapper key={ section._id } sectionName={ section.name } path={ section.path } />
+            <SectionLinkWrapper key={ id } sectionId={ id } />
           )
         })
       }

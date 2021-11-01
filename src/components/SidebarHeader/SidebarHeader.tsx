@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ISidebarHeaderProps } from '../../types/sidebarHeader';
+import { ISidebarHeaderProps } from '../../types/components/sidebarHeader';
 
 import './styles/sidebar-header.css';
 import './styles/sidebar-header__caption.css';

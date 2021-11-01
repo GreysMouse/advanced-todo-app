@@ -1,4 +1,4 @@
-import { ISectionAddButtonProps } from '../../types/sectionAddButton';
+import { ISectionAddButtonProps } from '../../types/components/sectionAddButton';
 
 import './styles/section-add-button.css';
 

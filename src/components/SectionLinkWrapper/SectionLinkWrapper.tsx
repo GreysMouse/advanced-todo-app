@@ -6,23 +6,28 @@ import SectionLink from '../SectionLink/SectionLink';
 
 import { IState } from '../../types/state';
 import { TDispatch } from '../../store';
-import { ISectionLinkWrapperProps } from '../../types/sectionLinkWrapper';
+import { ISectionLinkWrapperProps } from '../../types/components/sectionLinkWrapper';
 
-const SectionLinkWrapper= ({ sectionName, path }: ISectionLinkWrapperProps): JSX.Element => {
+const SectionLinkWrapper= ({ sectionId }: ISectionLinkWrapperProps): JSX.Element => {
 
-  const selectedPath = useSelector<IState, string>((state: IState) => state.pathRouter.activePath);
+  const selectedPath = useSelector((state: IState) => state.pathRouter.activePath);
+
+  const currentSection = useSelector((state: IState) => {
+    return state.sections.allSections.find((section) => {
+      return section._id === sectionId;
+    }) || state.sections.allSections[0];
+  });
   
   const dispatch = useDispatch<TDispatch>();
 
-  const isActive = selectedPath === path;
+  const isActive = selectedPath === currentSection.path;
   
   const handleLinkClick = (): void => {
-    dispatch(setActivePath(path));
+    dispatch(setActivePath(currentSection.path));
   }
 
   return <SectionLink
-    sectionName={ sectionName }
-    path={ path }
+    sectionData={ currentSection }
     isActive={ isActive }
     onClick={ handleLinkClick }
   />;

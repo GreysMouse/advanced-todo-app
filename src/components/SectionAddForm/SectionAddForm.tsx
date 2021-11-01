@@ -1,4 +1,4 @@
-import { ISectionAddFormProps } from '../../types/sectionAddForm';
+import { ISectionAddFormProps } from '../../types/components/sectionAddForm';
 
 import './styles/section-add-form.css';
 import './styles/section-add-form__input.css';

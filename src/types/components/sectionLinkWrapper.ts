@@ -1,6 +1,5 @@
 interface ISectionLinkWrapperProps {
-  sectionName: string;
-  path: string;
+  sectionId: string;
 }
 
 export type { ISectionLinkWrapperProps };

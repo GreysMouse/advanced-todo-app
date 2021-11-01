@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ISidebarProps } from '../../types/sidebar';
+import { ISidebarProps } from '../../types/components/sidebar';
 
 import './styles/sidebar.css';
 
