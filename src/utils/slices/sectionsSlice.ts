@@ -1,8 +1,10 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { INITIAL_SECTION_NAME, INITIAL_SECTION_PATH } from '../../config';
 
 import sectionsAPI from '../APIs/sectionsAPI';
+
+import { ISectionBody } from '../../types/section';
 
 const initialState = {
   errorMessage: '',
@@ -10,23 +12,17 @@ const initialState = {
     _id: '0',
     name: INITIAL_SECTION_NAME,
     path: INITIAL_SECTION_PATH
-  },
-  {
-    _id: '1',
-    name: 'mouse',
-    path: '/section-mouse'
-  },
-  {
-    _id: '2',
-    name: 'mouser',
-    path: '/section-mouser'
   }],
   isInputFieldOpen: false
 }
 
-const getSections = () => sectionsAPI.getSections().then((sectionsList) => sectionsList);
+const setSections = createAsyncThunk('sections/setSections', () => {
+  return sectionsAPI.getSections().then((sectionsList) => sectionsList);
+});
 
-const fetchSections = createAsyncThunk('sections/setAllSections', getSections);
+const addSection = createAsyncThunk('sections/addSection', (section: ISectionBody) => {
+  return sectionsAPI.createSection(section).then((section) => section);
+});
 
 const sectionsSlice = createSlice({
   name: 'sections',
@@ -37,17 +33,20 @@ const sectionsSlice = createSlice({
     },
     closeInputField: (state) => {
       state.isInputFieldOpen = false;
-    },
-    addNewSection: (state, action) => {
-      state.allSections = [ ...state.allSections, action.payload ];
     }
   },
   extraReducers(builder) {
     builder
-    .addCase(fetchSections.fulfilled, (state, action) => {
-      state.allSections = action.payload;
+    .addCase(setSections.fulfilled, (state, action) => {
+      state.allSections = state.allSections.concat(action.payload);
     })
-    .addCase(fetchSections.rejected, (state, action) => {
+    .addCase(setSections.rejected, (state, action) => {
+      console.log(action.error.message);
+    })
+    .addCase(addSection.fulfilled, (state, action) => {
+      state.allSections = [ ...state.allSections, action.payload ];
+    })
+    .addCase(addSection.rejected, (state, action) => {
       console.log(action.error.message);
     });
   }
@@ -56,7 +55,6 @@ const sectionsSlice = createSlice({
 const {
   openInputField,
   closeInputField,
-  addNewSection
 } = sectionsSlice.actions;
 
 const sectionsReducer = sectionsSlice.reducer;
@@ -64,7 +62,7 @@ const sectionsReducer = sectionsSlice.reducer;
 export {
   openInputField,
   closeInputField,
-  addNewSection,
-  fetchSections,
+  setSections,
+  addSection,
   sectionsReducer
 };

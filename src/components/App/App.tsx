@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { fetchSections } from '../../utils/slices/sectionsSlice'; 
+import { setSections } from '../../utils/slices/sectionsSlice'; 
 
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -17,7 +17,7 @@ const App = (): JSX.Element => {
   const dispatch = useDispatch<TDispatch>();
   
   React.useEffect(() => {
-    dispatch(fetchSections());
+    dispatch(setSections());
   }, [ dispatch ]);
 
   return (

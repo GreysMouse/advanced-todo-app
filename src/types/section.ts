@@ -1,7 +1,10 @@
-interface ISection {
-  _id: string;
+interface ISectionBody {
   name: string;
   path: string;
 }
 
-export type { ISection };
+interface ISection extends ISectionBody {
+  _id: string;
+}
+
+export type { ISectionBody, ISection };

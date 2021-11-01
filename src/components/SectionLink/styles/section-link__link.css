@@ -1,15 +1,24 @@
-.section-link__section-name {
+.section-link__link {
+  display: block;
+  padding: 10px 10px;
+  transition: all 0.15s linear;
+
   margin: 0;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0.6px;
   color: #c0c0c0;
+  text-decoration: none;
   text-transform: lowercase;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-.section-link__section-name::first-letter {
+.section-link__link::first-letter {
   text-transform: capitalize;
+}
+
+.section-link__link:hover {
+  background-color: #444;
 }

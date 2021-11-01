@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import isStringUnique from '../../utils/isStringUnique';
 import formatString from '../../utils/formatString';
-import { addNewSection, closeInputField } from '../../utils/slices/sectionsSlice';
+import { addSection, closeInputField } from '../../utils/slices/sectionsSlice';
 import { setActivePath } from '../../utils/slices/pathRouterSlice';
 
 import SectionAddForm from '../SectionAddForm/SectionAddForm';
@@ -57,8 +57,7 @@ const SectionAddFormWrapper = (): JSX.Element => {
     if (inputValue !== '') {
       const formattedInputValue = formatString(inputValue);
 
-      dispatch(addNewSection({
-        _id: '10',
+      dispatch(addSection({
         name: formattedInputValue,
         path: `section-${ formattedInputValue }`
       }));
