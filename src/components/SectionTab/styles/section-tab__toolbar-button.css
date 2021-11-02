@@ -1,0 +1,12 @@
+.section-tab__toolbar-button {
+  padding: 0;
+  margin: 0 8px;
+  border: none;
+  width: 14px;
+  height: 14px;
+  background: #0000;
+}
+
+.section-tab__toolbar-button:hover {
+  cursor: pointer;
+}

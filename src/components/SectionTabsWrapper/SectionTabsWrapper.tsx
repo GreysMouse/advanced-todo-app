@@ -1,10 +1,10 @@
 import { shallowEqual, useSelector } from 'react-redux';
 
-import Sections from '../Sections/Sections';
+import Sections from '../SectionTabs/SectionTabs';
 
 import { IState } from '../../types/state';
 
-const SectionsWrapper= (): JSX.Element => {
+const SectionTabsWrapper= (): JSX.Element => {
 
   const sectionsIds = useSelector((state: IState) => {
     return state.sections.allSections.map((section) => section._id);
@@ -13,4 +13,4 @@ const SectionsWrapper= (): JSX.Element => {
   return <Sections sectionsIds={ sectionsIds } />;
 }
 
-export default SectionsWrapper;
+export default SectionTabsWrapper;

@@ -2,13 +2,13 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { setActivePath } from '../../utils/slices/pathRouterSlice';
 
-import SectionLink from '../SectionLink/SectionLink';
+import SectionTab from '../SectionTab/SectionTab';
 
 import { IState } from '../../types/state';
 import { TDispatch } from '../../store';
-import { ISectionLinkWrapperProps } from '../../types/components/sectionLinkWrapper';
+import { ISectionTabWrapperProps } from '../../types/components/sectionTabWrapper';
 
-const SectionLinkWrapper= ({ sectionId }: ISectionLinkWrapperProps): JSX.Element => {
+const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element => {
 
   const selectedPath = useSelector((state: IState) => state.pathRouter.activePath);
 
@@ -26,11 +26,11 @@ const SectionLinkWrapper= ({ sectionId }: ISectionLinkWrapperProps): JSX.Element
     dispatch(setActivePath(currentSection.path));
   }
 
-  return <SectionLink
+  return <SectionTab
     sectionData={ currentSection }
     isActive={ isActive }
     onClick={ handleLinkClick }
   />;
 }
 
-export default SectionLinkWrapper;
+export default SectionTabWrapper;

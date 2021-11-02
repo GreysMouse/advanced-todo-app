@@ -1,6 +1,6 @@
 import Sidebar from '../Sidebar/Sidebar';
 import SidebarHeader from '../SidebarHeader/SidebarHeader';
-import SectionsWrapper from '../SectionsWrapper/SectionsWrapper';
+import SectionTabsWrapper from '../SectionTabsWrapper/SectionTabsWrapper';
 import SectionAddButtonWrapper from '../SectionAddButtonWrapper/SectionAddButtonWrapper';
 import TasksList from '../TasksList/TasksList';
 
@@ -11,7 +11,7 @@ const Main = (): JSX.Element => {
     <main className='main'>
       <Sidebar>
         <SidebarHeader caption='SECTIONS' />
-        <SectionsWrapper />
+        <SectionTabsWrapper />
         <SectionAddButtonWrapper />
       </Sidebar>
       <TasksList />

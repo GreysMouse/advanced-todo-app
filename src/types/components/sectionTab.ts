@@ -1,9 +1,9 @@
 import { ISection } from '../section';
 
-interface ISectionLinkProps {
+interface ISectionTabProps {
   sectionData: ISection;
   isActive: boolean;
   onClick(): void;
 }
 
-export type { ISectionLinkProps };
+export type { ISectionTabProps };
