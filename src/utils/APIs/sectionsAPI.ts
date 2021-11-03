@@ -27,6 +27,17 @@ class SectionsAPI extends API{
     })
     .then(this._checkResponse);
   }
+
+  deleteSection(sectionId: string) {
+    return fetch(`${ this._baseURL }/sections/${ sectionId }`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(this._checkResponse);
+  }
 }
 
 const sectionsAPI = new SectionsAPI({

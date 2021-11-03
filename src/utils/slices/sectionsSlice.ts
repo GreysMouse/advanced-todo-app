@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { INITIAL_SECTION_NAME, INITIAL_SECTION_PATH } from '../../config';
+import { INITIAL_SECTION_ID, INITIAL_SECTION_NAME, INITIAL_SECTION_PATH } from '../../config';
 
 import sectionsAPI from '../APIs/sectionsAPI';
 
@@ -9,7 +9,7 @@ import { ISectionBody } from '../../types/section';
 const initialState = {
   errorMessage: '',
   allSections: [{
-    _id: '0',
+    _id: INITIAL_SECTION_ID,
     name: INITIAL_SECTION_NAME,
     path: INITIAL_SECTION_PATH
   }],
@@ -22,6 +22,10 @@ const setSections = createAsyncThunk('sections/setSections', () => {
 
 const addSection = createAsyncThunk('sections/addSection', (section: ISectionBody) => {
   return sectionsAPI.createSection(section).then((section) => section);
+});
+
+const removeSection = createAsyncThunk('sections/removeSection', (sectionId: string) => {
+  return sectionsAPI.deleteSection(sectionId).then((section) => section);
 });
 
 const sectionsSlice = createSlice({
@@ -37,16 +41,25 @@ const sectionsSlice = createSlice({
   },
   extraReducers(builder) {
     builder
+    // GET
     .addCase(setSections.fulfilled, (state, action) => {
       state.allSections = state.allSections.concat(action.payload);
     })
     .addCase(setSections.rejected, (state, action) => {
       console.log(action.error.message);
     })
+    // POST
     .addCase(addSection.fulfilled, (state, action) => {
       state.allSections = [ ...state.allSections, action.payload ];
     })
     .addCase(addSection.rejected, (state, action) => {
+      console.log(action.error.message);
+    })
+    // DELETE
+    .addCase(removeSection.fulfilled, (state, action) => { 
+      state.allSections = state.allSections.filter((section) => section._id !== action.payload._id);
+    })
+    .addCase(removeSection.rejected, (state, action) => {
       console.log(action.error.message);
     });
   }
@@ -64,5 +77,6 @@ export {
   closeInputField,
   setSections,
   addSection,
+  removeSection,
   sectionsReducer
 };
