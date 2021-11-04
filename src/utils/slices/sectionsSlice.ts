@@ -4,7 +4,7 @@ import { INITIAL_SECTION_ID, INITIAL_SECTION_NAME, INITIAL_SECTION_PATH } from '
 
 import sectionsAPI from '../APIs/sectionsAPI';
 
-import { ISectionBody } from '../../types/section';
+import { ISectionBody, ISection } from '../../types/section';
 
 const initialState = {
   errorMessage: '',
@@ -13,7 +13,8 @@ const initialState = {
     name: INITIAL_SECTION_NAME,
     path: INITIAL_SECTION_PATH
   }],
-  isInputFieldOpen: false
+  isSectionAddFormOpen: false,
+  sectionInRenameState: null
 }
 
 const setSections = createAsyncThunk('sections/setSections', () => {
@@ -22,6 +23,10 @@ const setSections = createAsyncThunk('sections/setSections', () => {
 
 const addSection = createAsyncThunk('sections/addSection', (section: ISectionBody) => {
   return sectionsAPI.createSection(section).then((section) => section);
+});
+
+const renameSection = createAsyncThunk('sections/renameSection', (section: ISection) => {
+  return sectionsAPI.updateSection(section).then((section) => section);
 });
 
 const removeSection = createAsyncThunk('sections/removeSection', (sectionId: string) => {
@@ -33,10 +38,16 @@ const sectionsSlice = createSlice({
   initialState,
   reducers: {
     openInputField: (state) => {
-      state.isInputFieldOpen = true;
+      state.isSectionAddFormOpen = true;
     },
     closeInputField: (state) => {
-      state.isInputFieldOpen = false;
+      state.isSectionAddFormOpen = false;
+    },
+    defineRenamingSection: (state, action) => {
+      state.sectionInRenameState = action.payload;
+    },
+    resetRenamingSection: (state) => {
+      state.sectionInRenameState = null;
     }
   },
   extraReducers(builder) {
@@ -55,6 +66,15 @@ const sectionsSlice = createSlice({
     .addCase(addSection.rejected, (state, action) => {
       console.log(action.error.message);
     })
+    // PATCH
+    .addCase(renameSection.fulfilled, (state, action) => { 
+      state.allSections = state.allSections.map(section => {
+        return section._id === action.payload._id ? action.payload : section;
+      });
+    })
+    .addCase(renameSection.rejected, (state, action) => {
+      console.log(action.error.message);
+    })
     // DELETE
     .addCase(removeSection.fulfilled, (state, action) => { 
       state.allSections = state.allSections.filter((section) => section._id !== action.payload._id);
@@ -68,6 +88,8 @@ const sectionsSlice = createSlice({
 const {
   openInputField,
   closeInputField,
+  defineRenamingSection,
+  resetRenamingSection
 } = sectionsSlice.actions;
 
 const sectionsReducer = sectionsSlice.reducer;
@@ -75,8 +97,11 @@ const sectionsReducer = sectionsSlice.reducer;
 export {
   openInputField,
   closeInputField,
+  defineRenamingSection,
+  resetRenamingSection,
   setSections,
   addSection,
+  renameSection,
   removeSection,
   sectionsReducer
 };

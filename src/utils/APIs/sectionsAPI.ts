@@ -2,7 +2,7 @@ import API from './API';
 
 import { BASE_URL } from '../../config';
 
-import { ISectionBody } from '../../types/section';
+import { ISectionBody, ISection } from '../../types/section';
 
 class SectionsAPI extends API{
   getSections() {
@@ -24,6 +24,20 @@ class SectionsAPI extends API{
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(section)
+    })
+    .then(this._checkResponse);
+  }
+
+  updateSection(section: ISection) {
+    const { _id, name, path } = section;
+
+    return fetch(`${ this._baseURL }/sections/${ _id }`, {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name, path })
     })
     .then(this._checkResponse);
   }

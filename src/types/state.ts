@@ -7,7 +7,8 @@ interface IPathRouterState {
 interface ISectionsState {
   errorMessage: string;
   allSections: ISection[];
-  isInputFieldOpen: boolean;
+  isSectionAddFormOpen: boolean;
+  sectionInRenameState: string;
 }
 
 interface IState {

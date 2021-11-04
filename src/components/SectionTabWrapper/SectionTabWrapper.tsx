@@ -2,9 +2,10 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { setActivePath } from '../../utils/slices/pathRouterSlice';
-import { removeSection } from '../../utils/slices/sectionsSlice';
+import { defineRenamingSection, removeSection } from '../../utils/slices/sectionsSlice';
 
 import SectionTab from '../SectionTab/SectionTab';
+import SectionRenameFormWrapper from '../SectionRenameFormWrapper/SectionRenameFormWrapper';
 
 import { IState } from '../../types/state';
 import { TDispatch } from '../../store';
@@ -22,6 +23,10 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
     return currentSection.path === state.pathRouter.activePath;
   });
 
+  const isInRenameingState = useSelector((state: IState) => {
+    return state.sections.sectionInRenameState === sectionId;
+  })
+
   const dispatch = useDispatch<TDispatch>();
 
   console.log('tab')
@@ -30,20 +35,29 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
     dispatch(setActivePath(currentSection.path));
   }
 
-  const handleSectionRemove = (evt: React.MouseEvent<HTMLButtonElement>): void => {
-    evt.preventDefault();
-    evt.stopPropagation();
-    // const pos = state.sections.allSections.indexOf()s
-
-    dispatch(removeSection(sectionId));
+  const handleSectionRename = (): void => {
+    dispatch(defineRenamingSection(sectionId));
   }
 
-  return <SectionTab
-    sectionData={ currentSection }
-    isActive={ isActive }
-    onClick={ handleSectionClick }
-    onRemove={ handleSectionRemove }
-  />;
+  const handleSectionRemove = (): void => {
+    dispatch(removeSection(sectionId));
+  }
+  
+  return (
+    isInRenameingState ?
+      <SectionRenameFormWrapper
+        sectionData={ currentSection }
+        isSectionActive={ isActive }
+      />
+    :
+      <SectionTab
+        sectionData={ currentSection }
+        isActive={ isActive }
+        onClick={ handleSectionClick }
+        onRename={ handleSectionRename }
+        onRemove={ handleSectionRemove }
+      />
+  );
 }
 
 export default SectionTabWrapper;

@@ -13,7 +13,22 @@ import './styles/section-tab__toolbar-button.css';
 import './styles/section-tab__toolbar-button_type_edit.css';
 import './styles/section-tab__toolbar-button_type_delete.css';
 
-const SectionTab = ({ sectionData, isActive, onClick, onRemove }: ISectionTabProps): JSX.Element => {
+const SectionTab = ({ sectionData, isActive, onClick, onRename, onRemove }: ISectionTabProps): JSX.Element => {
+
+  const handleEditButtonClick = (evt: React.MouseEvent<HTMLButtonElement>): void => {
+    evt.preventDefault();
+    evt.stopPropagation();
+
+    onRename();
+  }
+
+  const handleDeleteButtonClick = (evt: React.MouseEvent<HTMLButtonElement>): void => {
+    evt.preventDefault();
+    evt.stopPropagation();
+
+    onRemove();
+  }
+
   return (
     <li className='section-tab'>
       <Link
@@ -27,11 +42,12 @@ const SectionTab = ({ sectionData, isActive, onClick, onRemove }: ISectionTabPro
             <button
               className='section-tab__toolbar-button section-tab__toolbar-button_type_delete'
               type='button'
-              onClick={ onRemove }
+              onClick={ handleDeleteButtonClick }
             />
             <button
               className='section-tab__toolbar-button section-tab__toolbar-button_type_edit'
               type='button'
+              onClick={ handleEditButtonClick }
             />
           </div>
         }
