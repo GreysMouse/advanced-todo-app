@@ -1,8 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { POPUP_MESSAGES } from '../../config';
+
 import { setActivePath } from '../../utils/slices/pathRouterSlice';
-import { defineRenamingSection, removeSection } from '../../utils/slices/sectionsSlice';
+import { defineRenamingSection } from '../../utils/slices/sectionsSlice';
+import { enablePopup } from '../../utils/slices/popupSlice';
 
 import SectionTab from '../SectionTab/SectionTab';
 import SectionRenameFormWrapper from '../SectionRenameFormWrapper/SectionRenameFormWrapper';
@@ -40,7 +43,11 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
   }
 
   const handleSectionRemove = (): void => {
-    dispatch(removeSection(sectionId));
+    dispatch(enablePopup({
+      type: 'removeSection',
+      message: POPUP_MESSAGES.REMOVE_SECTION,
+      actionPayload: sectionId
+    }));
   }
   
   return (

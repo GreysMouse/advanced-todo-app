@@ -20,4 +20,4 @@ const { setActivePath } = pathRouterSlice.actions;
 
 const pathRouterReducer = pathRouterSlice.reducer;
 
-export { setActivePath, pathRouterReducer }
+export { setActivePath, pathRouterReducer };

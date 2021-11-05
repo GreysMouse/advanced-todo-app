@@ -1,4 +1,4 @@
-import { shallowEqual, useSelector } from 'react-redux';
+import { useSelector, shallowEqual } from 'react-redux';
 
 import Sections from '../SectionTabs/SectionTabs';
 

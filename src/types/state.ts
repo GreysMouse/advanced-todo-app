@@ -11,9 +11,17 @@ interface ISectionsState {
   sectionInRenameState: string;
 }
 
-interface IState {
-  pathRouter: IPathRouterState,
-  sections: ISectionsState
+interface IPopupState {
+  isOpen: boolean;
+  type: string;
+  message: string;
+  actionPayload?: any;
 }
 
-export type { IState, IPathRouterState, ISectionsState };
+interface IState {
+  pathRouter: IPathRouterState,
+  sections: ISectionsState,
+  popup: IPopupState
+}
+
+export type { IState };

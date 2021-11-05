@@ -4,6 +4,7 @@ import getObjectIndexByKey from './utils/getObjectIndexByKey';
 
 import { pathRouterReducer } from './utils/slices/pathRouterSlice';
 import { sectionsReducer } from './utils/slices/sectionsSlice';
+import { popupReducer } from './utils/slices/popupSlice';
 
 const togglePathMiddleware = (storeAPI: any) => (next: any) => (action: any) => {
   if (action.type === 'sections/removeSection/fulfilled') {
@@ -21,7 +22,8 @@ const togglePathMiddleware = (storeAPI: any) => (next: any) => (action: any) => 
 const store = configureStore({
   reducer: {
     pathRouter: pathRouterReducer,
-    sections: sectionsReducer
+    sections: sectionsReducer,
+    popup: popupReducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(togglePathMiddleware)
 });

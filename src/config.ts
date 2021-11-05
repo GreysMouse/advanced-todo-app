@@ -18,4 +18,16 @@ export enum DEVICE_TYPES {
   LAPTOP = 'laptop'
 }
 
+export enum POPUP_MESSAGES {
+  REMOVE_SECTION = 'Are you sure you want to delete this section?'
+}
+
+export enum KEYS {
+  ESC = 'Escape',
+  UP = 'ArrowUp',
+  DOWN = 'ArrowDown',
+  LEFT = 'ArrowLeft',
+  RIGHT = 'ArrowRight'
+}
+
 export const BASE_URL = 'http://localhost:4000';

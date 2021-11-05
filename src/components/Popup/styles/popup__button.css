@@ -1,0 +1,27 @@
+.popup__button {
+  padding: 0;
+  width: 80px;
+  height: 32px;
+  outline: none;
+  border: 1px solid #1d4189;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: #0000;
+  transition: all 0.15s linear;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.6px;
+  color: #8bc34a;
+  text-transform: uppercase;
+}
+
+.popup__button:hover {
+  cursor: pointer;
+  color: #cddc39;
+}
+
+.popup__button:focus {
+  border-color: #c0c0c0;
+}

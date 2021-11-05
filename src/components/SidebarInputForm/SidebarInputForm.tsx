@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { KEYS } from '../../config';
+
 import { ISidebarInputFormProps } from '../../types/components/sidebarInputForm';
 
 import './styles/sidebar-input-form.css';
@@ -18,10 +20,10 @@ const SidebarInputForm = ({
     if (onClose) onClose();
   }
 
-  const handleEscKeyUp = (evt: React.KeyboardEvent): void => {
+  const handleEscKeyUp = (evt: React.KeyboardEvent<HTMLInputElement>): void => {
     evt.stopPropagation();
 
-    if (evt.key === 'Escape') handleInputFieldClose();
+    if (evt.key === KEYS.ESC) handleInputFieldClose();
   }
 
   const handleSubmit = (evt: React.FormEvent): void => {
