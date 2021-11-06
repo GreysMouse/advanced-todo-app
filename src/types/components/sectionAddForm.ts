@@ -10,4 +10,3 @@ interface ISectionAddFormProps {
 }
 
 export type { ISectionAddFormProps };
-  

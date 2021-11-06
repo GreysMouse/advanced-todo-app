@@ -1,3 +1,18 @@
 .section-tab {
-  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  transition: background-color 0.2s linear;
+}
+
+.section-tab:hover {
+  cursor: pointer;
+  background-color: #555;
+}
+
+.section-tab:hover .section-tab__toolbar {
+  width: initial;
+  opacity: 1;
 }

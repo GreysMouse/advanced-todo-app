@@ -11,11 +11,7 @@ const SectionTabs = ({ sectionsIds }: ISectionTabsProps): JSX.Element => {
     <div className='section-tabs'>
       <ul className='section-tabs__tabs-list'>
       {
-        sectionsIds.map((id) => {
-          return (
-            <SectionTabWrapper key={ id } sectionId={ id } />
-          )
-        })
+        sectionsIds.map((id) => <SectionTabWrapper key={ id } sectionId={ id } />)
       }
       </ul>
     <SectionAddFormWrapper />

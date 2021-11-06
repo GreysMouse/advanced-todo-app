@@ -12,18 +12,17 @@ import SectionRenameFormWrapper from '../SectionRenameFormWrapper/SectionRenameF
 
 import { IState } from '../../types/state';
 import { TDispatch } from '../../store';
+import { ISection } from '../../types/section';
 import { ISectionTabWrapperProps } from '../../types/components/sectionTabWrapper';
 
 const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element => {
 
-  const currentSection = useSelector((state: IState) => {
-    return state.sections.allSections.find((section) => {
-      return section._id === sectionId;
-    }) || state.sections.allSections[0];
-  });
+  const sectionData = useSelector((state: IState) => {
+    return state.sections.allSections.find(section => section._id === sectionId);
+  }) as ISection;
   
   const isActive = useSelector((state: IState) => {
-    return currentSection.path === state.pathRouter.activePath;
+    return sectionData.path === state.pathRouter.activePath;
   });
 
   const isInRenameingState = useSelector((state: IState) => {
@@ -32,10 +31,8 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
 
   const dispatch = useDispatch<TDispatch>();
 
-  console.log('tab')
-
   const handleSectionClick = (): void => {
-    dispatch(setActivePath(currentSection.path));
+    dispatch(setActivePath(sectionData.path));
   }
 
   const handleSectionRename = (): void => {
@@ -53,12 +50,12 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
   return (
     isInRenameingState ?
       <SectionRenameFormWrapper
-        sectionData={ currentSection }
+        sectionData={ sectionData }
         isSectionActive={ isActive }
       />
     :
       <SectionTab
-        sectionData={ currentSection }
+        sectionData={ sectionData }
         isActive={ isActive }
         onClick={ handleSectionClick }
         onRename={ handleSectionRename }

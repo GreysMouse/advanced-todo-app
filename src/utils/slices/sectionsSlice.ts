@@ -18,19 +18,19 @@ const initialState = {
 }
 
 const setSections = createAsyncThunk('sections/setSections', () => {
-  return sectionsAPI.getSections().then((sectionsList) => sectionsList);
+  return sectionsAPI.getSections().then(sectionsList => sectionsList);
 });
 
 const addSection = createAsyncThunk('sections/addSection', (section: ISectionBody) => {
-  return sectionsAPI.createSection(section).then((section) => section);
+  return sectionsAPI.createSection(section).then(section => section);
 });
 
 const renameSection = createAsyncThunk('sections/renameSection', (section: ISection) => {
-  return sectionsAPI.updateSection(section).then((section) => section);
+  return sectionsAPI.updateSection(section).then(section => section);
 });
 
 const removeSection = createAsyncThunk('sections/removeSection', (sectionId: string) => {
-  return sectionsAPI.deleteSection(sectionId).then((section) => section);
+  return sectionsAPI.deleteSection(sectionId).then(section => section);
 });
 
 const sectionsSlice = createSlice({

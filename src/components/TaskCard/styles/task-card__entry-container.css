@@ -1,0 +1,6 @@
+.task-card__entry-container {
+  padding: 8px 8px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #ffffc5;
+}

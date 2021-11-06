@@ -1,4 +1,3 @@
-
 interface ISectionTabsProps {
   sectionsIds: string[];
 }

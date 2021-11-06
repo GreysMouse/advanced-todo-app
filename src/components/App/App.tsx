@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setSections } from '../../utils/slices/sectionsSlice'; 
+import { setSections } from '../../utils/slices/sectionsSlice';
+import { setTasks } from '../../utils/slices/tasksSlice';
 
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -19,6 +20,7 @@ const App = (): JSX.Element => {
 
   React.useEffect(() => {
     dispatch(setSections());
+    dispatch(setTasks());
   }, [ dispatch ]);
 
   return (
