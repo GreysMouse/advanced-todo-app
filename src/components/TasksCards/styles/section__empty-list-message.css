@@ -1,0 +1,9 @@
+.section__empty-list-message {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.6px;
+  text-align: center;
+  color: #fff;
+}
