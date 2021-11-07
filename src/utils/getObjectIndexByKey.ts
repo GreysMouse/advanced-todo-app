@@ -1,4 +1,8 @@
-import { TObjectValue, IObject } from '../types/utils/getObjectIndexByKey';
+type TObjectValue = string | number;
+
+interface IObject {
+  [ key: string ]: TObjectValue;
+}
 
 const getObjectIndexByKey = (array: IObject[], key: string, value: TObjectValue): number => {
   for (let i = 0; i < array.length; ++i) {

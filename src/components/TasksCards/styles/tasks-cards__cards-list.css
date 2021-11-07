@@ -1,8 +1,0 @@
-.tasks-cards__cards-list {
-  display: flex;
-  flex-direction: column;
-  row-gap: 20px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}

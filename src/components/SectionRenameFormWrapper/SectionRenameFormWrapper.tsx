@@ -21,7 +21,7 @@ const SectionRenameFormWrapper = ({ sectionData, isSectionActive }: ISectionRena
     return state.sections.allSections.map((section) => section.name);
   }, shallowEqual);
 
-  const isNewSectionNameUnique = isStringUnique(getFormattedString(inputValue), allSectionsNames);
+  const isNewSectionNameUnique = isStringUnique(getFormattedString(inputValue, 'lowercase'), allSectionsNames);
 
   const dispatch = useDispatch<TDispatch>();  
 
@@ -36,7 +36,7 @@ const SectionRenameFormWrapper = ({ sectionData, isSectionActive }: ISectionRena
 
   const handleSubmit = (): void => {   
     if (inputValue !== '') {
-      const formattedInputValue = getFormattedString(inputValue);
+      const formattedInputValue = getFormattedString(inputValue, 'lowercase');
 
       dispatch(renameSection({
         ...sectionData,

@@ -23,7 +23,7 @@ const SectionAddFormWrapper = (): JSX.Element => {
     return state.sections.allSections.map((section) => section.name);
   }, shallowEqual);
 
-  const isNewSectionNameUnique = isStringUnique(getFormattedString(inputValue), allSectionsNames);
+  const isNewSectionNameUnique = isStringUnique(getFormattedString(inputValue, 'lowercase'), allSectionsNames);
 
   const dispatch = useDispatch<TDispatch>();  
 
@@ -38,7 +38,7 @@ const SectionAddFormWrapper = (): JSX.Element => {
 
   const handleSubmit = (): void => {
     if (inputValue !== '') {
-      const formattedInputValue = getFormattedString(inputValue);
+      const formattedInputValue = getFormattedString(inputValue, 'lowercase');
 
       dispatch(addSection({
         name: formattedInputValue,

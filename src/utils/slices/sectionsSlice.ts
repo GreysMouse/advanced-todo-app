@@ -61,7 +61,7 @@ const sectionsSlice = createSlice({
     })
     // POST
     .addCase(addSection.fulfilled, (state, action) => {
-      state.allSections = [ ...state.allSections, action.payload ];
+      state.allSections.push(action.payload);
     })
     .addCase(addSection.rejected, (state, action) => {
       console.log(action.error.message);

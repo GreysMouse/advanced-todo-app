@@ -1,5 +1,5 @@
 import TasksCardsWrapper from '../TasksCardsWrapper/TasksCardsWrapper';
-import TaskAddingPanel from '../TaskAddingPanel/TaskAddingPanel';
+import TaskAddingPanelWrapper from '../TaskAddingPanelWrapper/TaskAddingPanelWrapper';
 
 import { ISectionProps } from '../../types/components/section';
 
@@ -17,7 +17,7 @@ const Section = ({ path }: ISectionProps): JSX.Element => {
         <h2 className='section__header-caption'>{ `${ sectionName } todos` }</h2>
       </div>
       <TasksCardsWrapper path={ path } />
-      <TaskAddingPanel />
+      <TaskAddingPanelWrapper />
     </section>
   );
 }
