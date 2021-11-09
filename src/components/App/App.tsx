@@ -7,7 +7,6 @@ import { setTasks } from '../../utils/slices/tasksSlice';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
-import PopupWrapper from '../PopupWrapper/PopupWrapper';
 
 import { TDispatch } from '../../store';
 
@@ -29,7 +28,6 @@ const App = (): JSX.Element => {
         <Header />
         <Main />
         <Footer />
-        <PopupWrapper />
       </div>
     </div>
   );

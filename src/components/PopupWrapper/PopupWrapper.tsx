@@ -1,17 +1,17 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { disablePopup } from '../../utils/slices/popupSlice';
-import { removeSection } from '../../utils/slices/sectionsSlice';
 
 import Popup from '../Popup/Popup';
 
-import { IState } from '../../types/state';
 import { TDispatch } from '../../store';
+import { IState } from '../../types/state';
+import { IPopupWrapperProps } from '../../types/components/popupWrapper';
 
-const PopupWrapper= (): JSX.Element => {
+const PopupWrapper= ({ message, onSubmit }: IPopupWrapperProps): JSX.Element => {
 
-  const { isOpen, type, message, actionPayload } = useSelector((state: IState) => {
-    return state.popup;
+  const isOpen = useSelector((state: IState) => {
+    return state.popup.isOpen;
   });
 
   const dispatch = useDispatch<TDispatch>();
@@ -21,12 +21,7 @@ const PopupWrapper= (): JSX.Element => {
   }
 
   const handleSubmitClick = (): void => {
-    switch(type) {
-      case 'removeSection': {
-        dispatch(removeSection(actionPayload));
-        break;
-      }
-    }
+    onSubmit();
     handlePopupClose();
   }
 

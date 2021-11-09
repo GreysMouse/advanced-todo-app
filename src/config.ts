@@ -23,7 +23,7 @@ export enum DEVICE_TYPES {
 }
 
 export enum POPUP_MESSAGES {
-  REMOVE_SECTION = 'Are you sure you want to delete this section?'
+  REMOVE_SECTION = 'Are you sure you want to delete this section and all it`s TODOs?'
 }
 
 export enum KEYS {

@@ -1,27 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isOpen: false,
-  type: 'undefined',
-  message: '',
-  actionPayload: null
+  isOpen: false
 }
 
 const popupSlice = createSlice({
   name: 'popup',
   initialState,
   reducers: {
-    enablePopup: (state, action) => {
+    enablePopup: (state) => {
       state.isOpen = true;
-      state.type = action.payload.type;
-      state.message = action.payload.message;
-      state.actionPayload = action.payload.actionPayload;
     },
     disablePopup: (state) => {
       state.isOpen = false;
-      state.type = 'undefined';
-      state.message = '';
-      state.actionPayload = null;
     }
   }
 });

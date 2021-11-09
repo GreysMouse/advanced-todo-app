@@ -18,9 +18,6 @@ interface ITasksState {
 
 interface IPopupState {
   isOpen: boolean;
-  type: string;
-  message: string;
-  actionPayload?: any;
 }
 
 interface IState {

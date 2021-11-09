@@ -1,14 +1,16 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 
 import { POPUP_MESSAGES } from '../../config';
 
 import { setActivePath } from '../../utils/slices/pathRouterSlice';
-import { defineRenamingSection } from '../../utils/slices/sectionsSlice';
+import { defineRenamingSection, removeSection } from '../../utils/slices/sectionsSlice';
+import { removeTask } from '../../utils/slices/tasksSlice';
 import { enablePopup } from '../../utils/slices/popupSlice';
 
 import SectionTab from '../SectionTab/SectionTab';
 import SectionRenameFormWrapper from '../SectionRenameFormWrapper/SectionRenameFormWrapper';
+import PopupWrapper from '../PopupWrapper/PopupWrapper';
 
 import { IState } from '../../types/state';
 import { TDispatch } from '../../store';
@@ -27,7 +29,14 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
 
   const isInRenameingState = useSelector((state: IState) => {
     return state.sections.sectionInRenameState === sectionId;
-  })
+  });
+
+  const sectionTasksIds = useSelector((state: IState) => {
+    return state.tasks.allTasks.reduce((acc: string[], curr) => {
+      if (curr.section === sectionData.path) acc.push(curr._id);
+      return acc;
+    }, []);
+  }, shallowEqual);
 
   const dispatch = useDispatch<TDispatch>();
 
@@ -40,27 +49,37 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
   }
 
   const handleSectionRemove = (): void => {
-    dispatch(enablePopup({
-      type: 'removeSection',
-      message: POPUP_MESSAGES.REMOVE_SECTION,
-      actionPayload: sectionId
-    }));
+    dispatch(removeSection(sectionId));
+
+    sectionTasksIds.forEach(taskId => dispatch(removeTask(taskId)));
+  }
+
+  const handleOpenPopup = (): void => {
+    dispatch(enablePopup());
   }
   
   return (
-    isInRenameingState ?
-      <SectionRenameFormWrapper
-        sectionData={ sectionData }
-        isSectionActive={ isActive }
-      />
-    :
-      <SectionTab
-        sectionData={ sectionData }
-        isActive={ isActive }
-        onClick={ handleSectionClick }
-        onRename={ handleSectionRename }
-        onRemove={ handleSectionRemove }
-      />
+    <>
+      {
+        isInRenameingState ?
+          <SectionRenameFormWrapper
+            sectionData={ sectionData }
+            isSectionActive={ isActive }
+          />
+        :
+          <SectionTab
+            sectionData={ sectionData }
+            isActive={ isActive }
+            onClick={ handleSectionClick }
+            onRename={ handleSectionRename }
+            onRemove={ handleOpenPopup }
+          />
+        }
+        <PopupWrapper
+          message={ POPUP_MESSAGES.REMOVE_SECTION }
+          onSubmit={ handleSectionRemove }
+        />
+    </>
   );
 }
 
