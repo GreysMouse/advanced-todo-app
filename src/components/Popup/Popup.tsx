@@ -37,6 +37,18 @@ const Popup = ({ message, onSubmit, onCancel }: IPopupProps): JSX.Element => {
     }
   }
 
+  const handleSubmitClick = (evt: React.MouseEvent<HTMLButtonElement>): void => {
+    evt.stopPropagation();
+
+    onSubmit();
+  }
+
+  const handleCancelClick = (evt: React.MouseEvent<HTMLButtonElement>): void => {
+    evt.stopPropagation();
+
+    onCancel();
+  }
+
   return (
     <div
       className='popup'
@@ -50,7 +62,7 @@ const Popup = ({ message, onSubmit, onCancel }: IPopupProps): JSX.Element => {
             ref={ submitButtonElement }
             className='popup__button'
             type='button'   
-            onClick={ onSubmit }
+            onClick={ handleSubmitClick }
           >
             Yes
           </button>
@@ -59,7 +71,7 @@ const Popup = ({ message, onSubmit, onCancel }: IPopupProps): JSX.Element => {
             className='popup__button'
             type='button'
             autoFocus={ true }
-            onClick={ onCancel }
+            onClick={ handleCancelClick }
           >
             No
           </button>

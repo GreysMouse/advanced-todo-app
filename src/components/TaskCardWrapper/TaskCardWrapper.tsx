@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { POPUP_TYPES, POPUP_MESSAGES } from '../../config';
 
-import { setSelectedTask, resetSelectedTask, removeTask } from '../../utils/slices/tasksSlice';
+import { setSelectedTask, resetSelectedTask, removeTask, defineRenamingTask } from '../../utils/slices/tasksSlice';
 import { enablePopup } from '../../utils/slices/popupSlice';
 
 import TasksCard from '../TaskCard/TaskCard';
@@ -23,10 +23,18 @@ const TaskCardWrapper= ({ taskId }: ITaskCardWrapperProps): JSX.Element => {
     return state.tasks.selectedTask === taskId;
   });
 
+  const isInRenamingState = useSelector((state: IState) => {
+    return state.tasks.taskInRenameState === taskId;
+  });
+
   const dispatch = useDispatch<TDispatch>();
 
   const handleCardClick = (): void => {
     isSelected ? dispatch(resetSelectedTask()) : dispatch(setSelectedTask(taskId));
+  }
+
+  const handleCardRename = (): void => {
+    dispatch(defineRenamingTask(taskId));
   }
 
   const handleCardRemove = (): void => {
@@ -42,7 +50,9 @@ const TaskCardWrapper= ({ taskId }: ITaskCardWrapperProps): JSX.Element => {
       <TasksCard
         taskData={ taskData }
         isSelected={ isSelected }
+        isInRenamingState={ isInRenamingState }
         onClick={ handleCardClick }
+        onRename={ handleCardRename }
         onRemove={ handleOpenPopup }
       />
       <PopupWrapper

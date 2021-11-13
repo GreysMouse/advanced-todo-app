@@ -3,7 +3,6 @@ import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 
 import isStringUnique from '../../utils/isStringUnique';
 import getFormattedString from '../../utils/getFormattedString';
-
 import { resetRenamingSection, renameSection } from '../../utils/slices/sectionsSlice';
 import { setActivePath } from '../../utils/slices/pathRouterSlice';
 
@@ -15,7 +14,7 @@ import { ISectionRenameFormWrapperProps } from '../../types/components/sectionRe
 
 const SectionRenameFormWrapper = ({ sectionData, isSectionActive }: ISectionRenameFormWrapperProps): JSX.Element => {
 
-  const [ inputValue, setInputValue ] = React.useState<string>('');
+  const [ inputValue, setInputValue ] = React.useState<string>(sectionData.name);
 
   const allSectionsNames = useSelector((state: IState) => {
     return state.sections.allSections.map((section) => section.name);
@@ -26,7 +25,6 @@ const SectionRenameFormWrapper = ({ sectionData, isSectionActive }: ISectionRena
   const dispatch = useDispatch<TDispatch>();  
 
   const handleInputFieldClose = (): void => {
-    setInputValue('');
     dispatch(resetRenamingSection());
   }
 

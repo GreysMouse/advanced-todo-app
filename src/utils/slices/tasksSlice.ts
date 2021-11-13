@@ -6,7 +6,8 @@ import { ITask, ITaskBody } from '../../types/task';
 
 const initialState = {
   allTasks: [] as ITask[],
-  selectedTask: ''
+  selectedTask: '',
+  taskInRenameState: null
 }
 
 const setTasks = createAsyncThunk('tasks/setTasks', () => {
@@ -15,6 +16,10 @@ const setTasks = createAsyncThunk('tasks/setTasks', () => {
 
 const addTask = createAsyncThunk('tasks/addTask', (task: ITaskBody) => {
   return tasksAPI.createTask(task).then(task => task);
+});
+
+const renameTask = createAsyncThunk('tasks/renameTask', (task: ITask) => {
+  return tasksAPI.updateTask(task).then(task => task);
 });
 
 const removeTask = createAsyncThunk('tasks/removeTask', (taskId: string) => {
@@ -30,6 +35,12 @@ const tasksSlice = createSlice({
     },
     resetSelectedTask: (state) => {
       state.selectedTask = '';
+    },
+    defineRenamingTask: (state, action) => {
+      state.taskInRenameState = action.payload;
+    },
+    resetRenamingTask: (state) => {
+      state.taskInRenameState = null;
     }
   },
   extraReducers(builder) {
@@ -48,6 +59,15 @@ const tasksSlice = createSlice({
     .addCase(addTask.rejected, (state, action) => {
       console.log(action.error.message);
     })
+    // PATCH
+    .addCase(renameTask.fulfilled, (state, action) => { 
+      state.allTasks = state.allTasks.map(task => {
+        return task._id === action.payload._id ? action.payload : task;
+      });
+    })
+    .addCase(renameTask.rejected, (state, action) => {
+      console.log(action.error.message);
+    })
     // DELETE
     .addCase(removeTask.fulfilled, (state, action) => {
       state.allTasks = state.allTasks.filter(task => task._id !== action.payload._id);
@@ -58,15 +78,23 @@ const tasksSlice = createSlice({
   }
 });
 
-const { setSelectedTask, resetSelectedTask } = tasksSlice.actions;
+const {
+  setSelectedTask,
+  resetSelectedTask,
+  defineRenamingTask,
+  resetRenamingTask
+} = tasksSlice.actions;
 
 const tasksReducer = tasksSlice.reducer;
 
 export {
   setSelectedTask,
   resetSelectedTask,
+  defineRenamingTask,
+  resetRenamingTask,
   setTasks,
   addTask,
+  renameTask,
   removeTask,
   tasksReducer
 };

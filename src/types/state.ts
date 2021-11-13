@@ -15,6 +15,7 @@ interface ISectionsState {
 interface ITasksState {
   allTasks: ITask[];
   selectedTask: string;
+  taskInRenameState: string;
 }
 
 interface IPopupState {

@@ -27,7 +27,7 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
     return sectionData.path === state.pathRouter.activePath;
   });
 
-  const isInRenameingState = useSelector((state: IState) => {
+  const isInRenamingState = useSelector((state: IState) => {
     return state.sections.sectionInRenameState === sectionId;
   });
 
@@ -61,7 +61,7 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
   return (
     <>
       {
-        isInRenameingState ?
+        isInRenamingState ?
           <SectionRenameFormWrapper
             sectionData={ sectionData }
             isSectionActive={ isActive }

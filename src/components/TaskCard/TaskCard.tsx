@@ -1,6 +1,7 @@
 import React from 'react';
 
 import TaskCardToolbar from '../TaskCardToolbar/TaskCardToolbar';
+import TaskRenameFormWrapper from '../TaskRenameFormWrapper/TaskRenameFormWrapper';
 
 import { ITaskCardProps } from '../../types/components/taskCard';
 
@@ -11,9 +12,16 @@ import './styles/task-card__entry.css';
 import './styles/task-card__entry_active.css';
 import './styles/task-card__toolbar.css';
 
-const TaskCard = ({ taskData, isSelected, onClick, onRemove }: ITaskCardProps): JSX.Element => {
+const TaskCard = ({
+  taskData,
+  isSelected,
+  isInRenamingState,
+  onClick,
+  onRemove,
+  onRename
+}: ITaskCardProps): JSX.Element => {
   
-  const handleCardClick = (evt: React.MouseEvent): void => {
+  const handleCardClick = (evt: React.MouseEvent<HTMLParagraphElement>): void => {
     evt.stopPropagation();
 
     onClick();
@@ -25,15 +33,21 @@ const TaskCard = ({ taskData, isSelected, onClick, onRemove }: ITaskCardProps): 
         <p className='task-card__info'>{ taskData.creationDate }</p>
         <p className='task-card__info'>{ taskData.creationTime }</p>
       </div>
-      <p
-        className={ 'task-card__entry' + (isSelected ? ' task-card__entry_active' : '') }
-        onClick={ handleCardClick }
-      >
-        { taskData.entry }
-      </p>
       {
-        isSelected && <TaskCardToolbar
+        isInRenamingState ?
+          <TaskRenameFormWrapper taskData={ taskData } />
+        :
+          <p
+            className={ 'task-card__entry' + (isSelected ? ' task-card__entry_active' : '') }
+            onClick={ handleCardClick }
+          >
+            { taskData.entry }
+          </p>
+      }
+      {
+        isSelected && !isInRenamingState && <TaskCardToolbar
           extraClass='task-card__toolbar'
+          onRenameButtonClick={ onRename }
           onDeleteButtonClick={ onRemove }
         />
       }
