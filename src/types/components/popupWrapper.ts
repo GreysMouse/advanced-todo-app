@@ -1,4 +1,5 @@
 interface IPopupWrapperProps {
+  type: string;
   message: string;
   onSubmit(): void;
 }

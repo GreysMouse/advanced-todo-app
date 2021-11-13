@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 
-import { POPUP_MESSAGES } from '../../config';
+import { POPUP_TYPES, POPUP_MESSAGES } from '../../config';
 
 import { setActivePath } from '../../utils/slices/pathRouterSlice';
 import { defineRenamingSection, removeSection } from '../../utils/slices/sectionsSlice';
@@ -55,7 +55,7 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
   }
 
   const handleOpenPopup = (): void => {
-    dispatch(enablePopup());
+    dispatch(enablePopup(POPUP_TYPES.REMOVE_SECTION));
   }
   
   return (
@@ -76,6 +76,7 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
           />
         }
         <PopupWrapper
+          type={ POPUP_TYPES.REMOVE_SECTION }
           message={ POPUP_MESSAGES.REMOVE_SECTION }
           onSubmit={ handleSectionRemove }
         />

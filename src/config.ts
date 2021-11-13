@@ -22,8 +22,14 @@ export enum DEVICE_TYPES {
   LAPTOP = 'laptop'
 }
 
+export enum POPUP_TYPES {
+  REMOVE_SECTION = 'removeSection',
+  REMOVE_TASK = 'removeTask'
+}
+
 export enum POPUP_MESSAGES {
-  REMOVE_SECTION = 'Are you sure you want to delete this section and all it`s TODOs?'
+  REMOVE_SECTION = 'Are you sure you want to delete this section and all it`s TODOs?',
+  REMOVE_TASK = 'Are you sure you want to delete this task?'
 }
 
 export enum KEYS {

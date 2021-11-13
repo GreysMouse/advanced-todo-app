@@ -1,0 +1,4 @@
+.task-card-toolbar {
+  display: flex;
+  flex-direction: row;
+}

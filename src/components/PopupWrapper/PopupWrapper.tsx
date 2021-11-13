@@ -8,10 +8,10 @@ import { TDispatch } from '../../store';
 import { IState } from '../../types/state';
 import { IPopupWrapperProps } from '../../types/components/popupWrapper';
 
-const PopupWrapper= ({ message, onSubmit }: IPopupWrapperProps): JSX.Element => {
+const PopupWrapper= ({ type = '', message, onSubmit }: IPopupWrapperProps): JSX.Element => {
 
   const isOpen = useSelector((state: IState) => {
-    return state.popup.isOpen;
+    return state.popup.type === type;
   });
 
   const dispatch = useDispatch<TDispatch>();

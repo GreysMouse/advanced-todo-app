@@ -5,7 +5,8 @@ import tasksAPI from '../APIs/tasksAPI';
 import { ITask, ITaskBody } from '../../types/task';
 
 const initialState = {
-  allTasks: [] as ITask[]
+  allTasks: [] as ITask[],
+  selectedTask: ''
 }
 
 const setTasks = createAsyncThunk('tasks/setTasks', () => {
@@ -24,7 +25,12 @@ const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-
+    setSelectedTask: (state, action) => {
+      state.selectedTask = action.payload;
+    },
+    resetSelectedTask: (state) => {
+      state.selectedTask = '';
+    }
   },
   extraReducers(builder) {
     builder
@@ -52,6 +58,15 @@ const tasksSlice = createSlice({
   }
 });
 
+const { setSelectedTask, resetSelectedTask } = tasksSlice.actions;
+
 const tasksReducer = tasksSlice.reducer;
 
-export { setTasks, addTask, removeTask, tasksReducer };
+export {
+  setSelectedTask,
+  resetSelectedTask,
+  setTasks,
+  addTask,
+  removeTask,
+  tasksReducer
+};

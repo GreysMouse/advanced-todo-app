@@ -1,7 +1,0 @@
-.section-toolbar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 20px;
-  padding: 40px 20px;
-}

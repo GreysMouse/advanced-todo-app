@@ -1,4 +1,7 @@
 .task-card__info-container {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

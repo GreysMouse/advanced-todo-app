@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setSections } from '../../utils/slices/sectionsSlice';
-import { setTasks } from '../../utils/slices/tasksSlice';
+import { resetSelectedTask, setTasks } from '../../utils/slices/tasksSlice';
 
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -17,6 +17,10 @@ const App = (): JSX.Element => {
 
   const dispatch = useDispatch<TDispatch>();
 
+  const handleEffectsReset = (): void => {
+    dispatch(resetSelectedTask());
+  }
+
   React.useEffect(() => {
     dispatch(setSections());
     dispatch(setTasks());
@@ -24,7 +28,7 @@ const App = (): JSX.Element => {
 
   return (
     <div className='app'>
-      <div className='app__container'>
+      <div className='app__container' onClick={ handleEffectsReset } >
         <Header />
         <Main />
         <Footer />
