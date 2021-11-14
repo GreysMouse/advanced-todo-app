@@ -11,6 +11,7 @@ import './styles/task-card__info.css';
 import './styles/task-card__entry.css';
 import './styles/task-card__entry_active.css';
 import './styles/task-card__toolbar.css';
+import { KEYS } from '../../config';
 
 const TaskCard = ({
   taskData,
@@ -27,8 +28,14 @@ const TaskCard = ({
     onClick();
   }
 
+  const handleEscKeyUp = (evt: React.KeyboardEvent): void => {
+    evt.stopPropagation();
+    console.log('wdwd')
+    if (evt.key === KEYS.ESC) onClick();
+  }
+
   return (
-    <li className='task-card'>
+    <li className='task-card' onKeyUp={ handleEscKeyUp }>
       <div className='task-card__info-container'>
         <p className='task-card__info'>{ taskData.creationDate }</p>
         <p className='task-card__info'>{ taskData.creationTime }</p>
@@ -38,8 +45,10 @@ const TaskCard = ({
           <TaskRenameFormWrapper taskData={ taskData } />
         :
           <p
+            id='task-card__entry'
             className={ 'task-card__entry' + (isSelected ? ' task-card__entry_active' : '') }
             onClick={ handleCardClick }
+            
           >
             { taskData.entry }
           </p>

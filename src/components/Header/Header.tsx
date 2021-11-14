@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './styles/header.css';
 import './styles/header__app-name.css';
 
@@ -9,4 +11,4 @@ const Header = (): JSX.Element => {
   );
 }
 
-export default Header;
+export default React.memo(Header);

@@ -1,11 +1,17 @@
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { POPUP_TYPES, POPUP_MESSAGES } from '../../config';
 
-import { setSelectedTask, resetSelectedTask, removeTask, defineRenamingTask } from '../../utils/slices/tasksSlice';
+import {
+  setSelectedTask,
+  resetSelectedTask,
+  removeTask,
+  defineRenamingTask
+} from '../../utils/slices/tasksSlice';
 import { enablePopup } from '../../utils/slices/popupSlice';
 
-import TasksCard from '../TaskCard/TaskCard';
+import TaskCard from '../TaskCard/TaskCard';
 import PopupWrapper from '../PopupWrapper/PopupWrapper';
 
 import { TDispatch } from '../../store';
@@ -47,7 +53,7 @@ const TaskCardWrapper= ({ taskId }: ITaskCardWrapperProps): JSX.Element => {
 
   return (
     <>
-      <TasksCard
+      <TaskCard
         taskData={ taskData }
         isSelected={ isSelected }
         isInRenamingState={ isInRenamingState }

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Sidebar from '../Sidebar/Sidebar';
 import SidebarHeader from '../SidebarHeader/SidebarHeader';
 import SectionTabsWrapper from '../SectionTabsWrapper/SectionTabsWrapper';
@@ -19,4 +21,4 @@ const Main = (): JSX.Element => {
   );
 }
 
-export default Main;
+export default React.memo(Main);

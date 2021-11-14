@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { CURRENT_YEAR } from '../../config';
 
 import './styles/app__footer.css';
@@ -15,4 +17,4 @@ const Footer = (): JSX.Element => {
   );
 }
 
-export default Footer;
+export default React.memo(Footer);

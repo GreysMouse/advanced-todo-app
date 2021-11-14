@@ -44,7 +44,6 @@ const TaskCardInputForm = ({
         autoFocus={ true }
         value={ inputValue }
         onChange={ onInputValueChange }
-        onBlur={ handleInputFieldClose }
         onKeyUp={ handleEscKeyUp }
       />
     </form>
