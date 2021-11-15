@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import { KEYS } from '../../config';
 
@@ -49,7 +50,7 @@ const Popup = ({ message, onSubmit, onCancel }: IPopupProps): JSX.Element => {
     onCancel();
   }
 
-  return (
+  return ReactDOM.createPortal(
     <div
       className='popup'
       onKeyUp={ handleKeyUp }
@@ -77,8 +78,9 @@ const Popup = ({ message, onSubmit, onCancel }: IPopupProps): JSX.Element => {
           </button>
         </div>
       </div>
-    </div>
-  )
+    </div>,
+    document.querySelector('.app') as HTMLDivElement
+  );
 }
 
 export default Popup;

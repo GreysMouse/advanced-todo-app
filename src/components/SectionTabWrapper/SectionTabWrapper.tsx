@@ -1,12 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 
-import { POPUP_TYPES, POPUP_MESSAGES } from '../../config';
+import { POPUP_MESSAGES } from '../../config';
 
 import { setActivePath } from '../../utils/slices/pathRouterSlice';
 import { setRenamingSection, removeSection } from '../../utils/slices/sectionsSlice';
-import { removeTask } from '../../utils/slices/tasksSlice';
-import { enablePopup } from '../../utils/slices/popupSlice';
+import { editTask, removeTask } from '../../utils/slices/tasksSlice';
 
 import SectionTab from '../SectionTab/SectionTab';
 import SectionRenameFormWrapper from '../SectionRenameFormWrapper/SectionRenameFormWrapper';
@@ -18,6 +17,8 @@ import { ISection } from '../../types/section';
 import { ISectionTabWrapperProps } from '../../types/components/sectionTabWrapper';
 
 const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element => {
+
+  const [ isDeleting, setIsDeleting ] = React.useState<boolean>(false);
 
   const sectionData = useSelector((state: IState) => {
     return state.sections.allSections.find(section => section._id === sectionId);
@@ -31,11 +32,8 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
     return state.sections.renamingSection === sectionId;
   });
 
-  const sectionTasksIds = useSelector((state: IState) => {
-    return state.tasks.allTasks.reduce((acc: string[], curr) => {
-      if (curr.section === sectionData.path) acc.push(curr._id);
-      return acc;
-    }, []);
+  const sectionTasks = useSelector((state: IState) => {
+    return state.tasks.allTasks.filter(task => task.section === sectionData.path);
   }, shallowEqual);
 
   const dispatch = useDispatch<TDispatch>();
@@ -46,16 +44,25 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
 
   const handleSectionRename = (): void => {
     dispatch(setRenamingSection(sectionId));
+
+    // sectionTasksIds.forEach(taskId => dispatch(editTask({
+    //   ... 
+    // })));
   }
 
   const handleSectionRemove = (): void => {
     dispatch(removeSection(sectionId));
+    setIsDeleting(false);
 
-    sectionTasksIds.forEach(taskId => dispatch(removeTask(taskId)));
+    sectionTasks.forEach(task => dispatch(removeTask(task._id)));
   }
 
-  const handleOpenPopup = (): void => {
-    dispatch(enablePopup(POPUP_TYPES.REMOVE_SECTION));
+  const handlePopupOpen = (): void => {
+    setIsDeleting(true);
+  }
+
+  const handlePopupCancel = (): void => {
+    setIsDeleting(false);
   }
   
   return (
@@ -72,14 +79,16 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
             isActive={ isActive }
             onClick={ handleSectionClick }
             onRename={ handleSectionRename }
-            onRemove={ handleOpenPopup }
+            onRemove={ handlePopupOpen }
           />
         }
-        <PopupWrapper
-          type={ POPUP_TYPES.REMOVE_SECTION }
-          message={ POPUP_MESSAGES.REMOVE_SECTION }
-          onSubmit={ handleSectionRemove }
-        />
+        {
+          isDeleting && <PopupWrapper
+            message={ POPUP_MESSAGES.REMOVE_SECTION }
+            onSubmit={ handleSectionRemove }
+            onCancel={ handlePopupCancel }
+          />
+        }
     </>
   );
 }

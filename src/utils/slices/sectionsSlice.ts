@@ -14,7 +14,8 @@ const initialState = {
     path: INITIAL_SECTION_PATH
   }],
   isSectionAddFormOpen: false,
-  renamingSection: null
+  renamingSection: null,
+  deletingSection: null
 }
 
 const setSections = createAsyncThunk('sections/setSections', () => {
@@ -77,7 +78,9 @@ const sectionsSlice = createSlice({
     })
     // DELETE
     .addCase(removeSection.fulfilled, (state, action) => { 
-      state.allSections = state.allSections.filter((section) => section._id !== action.payload._id);
+      const updatedSections = state.allSections.filter(section => section._id !== action.payload._id);
+      
+      state.allSections = updatedSections;
     })
     .addCase(removeSection.rejected, (state, action) => {
       console.log(action.error.message);

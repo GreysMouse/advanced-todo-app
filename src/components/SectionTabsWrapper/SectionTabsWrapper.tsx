@@ -7,7 +7,7 @@ import { IState } from '../../types/state';
 const SectionTabsWrapper= (): JSX.Element => {
 
   const sectionsIds = useSelector((state: IState) => {
-    return state.sections.allSections.map((section) => section._id);
+    return state.sections.allSections.map(section => section._id);
   }, shallowEqual);
 
   return <SectionTabs sectionsIds={ sectionsIds } />;

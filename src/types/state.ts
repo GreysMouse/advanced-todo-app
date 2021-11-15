@@ -14,19 +14,14 @@ interface ISectionsState {
 
 interface ITasksState {
   allTasks: ITask[];
-  selectedTask: string;
-  editingTask: string;
-}
-
-interface IPopupState {
-  type: string;
+  selectedTask: string | null;
+  editingTask: string | null;
 }
 
 interface IState {
   pathRouter: IPathRouterState,
   sections: ISectionsState,
-  tasks: ITasksState,
-  popup: IPopupState
+  tasks: ITasksState
 }
 
 export type { IState };

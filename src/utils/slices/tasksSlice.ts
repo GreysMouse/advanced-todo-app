@@ -6,7 +6,7 @@ import { ITask, ITaskBody } from '../../types/task';
 
 const initialState = {
   allTasks: [] as ITask[],
-  selectedTask: '',
+  selectedTask: null,
   editingTask: null
 }
 
@@ -34,7 +34,7 @@ const tasksSlice = createSlice({
       state.selectedTask = action.payload;
     },
     resetSelectedTask: (state) => {
-      state.selectedTask = '';
+      state.selectedTask = null;
     },
     setEditingTask: (state, action) => {
       state.editingTask = action.payload;

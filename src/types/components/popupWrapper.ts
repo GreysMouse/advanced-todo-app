@@ -1,7 +1,7 @@
 interface IPopupWrapperProps {
-  type: string;
   message: string;
   onSubmit(): void;
+  onCancel(): void;
 }
 
 export type { IPopupWrapperProps };

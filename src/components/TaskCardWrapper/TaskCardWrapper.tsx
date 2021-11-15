@@ -1,15 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { POPUP_TYPES, POPUP_MESSAGES } from '../../config';
+import { POPUP_MESSAGES } from '../../config';
 
 import {
   setSelectedTask,
   resetSelectedTask,
   setEditingTask,
-  removeTask  
+  removeTask
 } from '../../utils/slices/tasksSlice';
-import { enablePopup } from '../../utils/slices/popupSlice';
 
 import TaskCard from '../TaskCard/TaskCard';
 import PopupWrapper from '../PopupWrapper/PopupWrapper';
@@ -20,6 +19,8 @@ import { ITaskCardWrapperProps } from '../../types/components/taskCardWrapper';
 import { ITask } from '../../types/task';
 
 const TaskCardWrapper= ({ taskId }: ITaskCardWrapperProps): JSX.Element => {
+
+  const [ isDeleting, setIsDeleting ] = React.useState<boolean>(false);
 
   const taskData = useSelector((state: IState) => {
     return state.tasks.allTasks.find(task => task._id === taskId);
@@ -47,8 +48,12 @@ const TaskCardWrapper= ({ taskId }: ITaskCardWrapperProps): JSX.Element => {
     dispatch(removeTask(taskId));
   }
 
-  const handleOpenPopup = (): void => {
-    dispatch(enablePopup(POPUP_TYPES.REMOVE_TASK));
+  const handlePopupOpen = (): void => {
+    setIsDeleting(true);
+  }
+
+  const handlePopupCancel = (): void => {
+    setIsDeleting(false);
   }
 
   return (
@@ -59,13 +64,15 @@ const TaskCardWrapper= ({ taskId }: ITaskCardWrapperProps): JSX.Element => {
         isEditing={ isEditing }
         onClick={ handleCardClick }
         onEdit={ handleCardEdit }
-        onRemove={ handleOpenPopup }
+        onRemove={ handlePopupOpen }
       />
-      <PopupWrapper
-        type={ POPUP_TYPES.REMOVE_TASK }
-        message={ POPUP_MESSAGES.REMOVE_TASK }
-        onSubmit={ handleCardRemove }
-      />
+      {
+        isDeleting && <PopupWrapper
+          message={ POPUP_MESSAGES.REMOVE_TASK }
+          onSubmit={ handleCardRemove }
+          onCancel={ handlePopupCancel }
+        />
+      }
     </>
   );
 }
