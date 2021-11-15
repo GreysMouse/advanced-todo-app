@@ -2,21 +2,21 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import getFormattedString from '../../utils/getFormattedString';
-import { resetRenamingTask, renameTask } from '../../utils/slices/tasksSlice';
+import { resetEditingTask, editTask } from '../../utils/slices/tasksSlice';
 
 import TaskCardInputForm from '../TaskCardInputForm/TaskCardInputForm';
 
 import { TDispatch } from '../../store';
-import { ITaskRenameFormWrapperProps } from '../../types/components/taskRenameFormWrapper';
+import { ITaskEditFormWrapperProps } from '../../types/components/taskEditFormWrapper';
 
-const TaskRenameFormWrapper = ({ taskData }: ITaskRenameFormWrapperProps): JSX.Element => {
+const TaskEditFormWrapper = ({ taskData }: ITaskEditFormWrapperProps): JSX.Element => {
 
   const [ inputValue, setInputValue ] = React.useState<string>(taskData.entry);
 
   const dispatch = useDispatch<TDispatch>();
 
   const handleInputFieldClose = (): void => {
-    dispatch(resetRenamingTask());
+    dispatch(resetEditingTask());
   }
 
   const handleInputValueChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +27,7 @@ const TaskRenameFormWrapper = ({ taskData }: ITaskRenameFormWrapperProps): JSX.E
     if (inputValue !== '') {
       const formattedInputValue = getFormattedString(inputValue, 'capitalize');
 
-      dispatch(renameTask({
+      dispatch(editTask({
         ...taskData,
         entry: formattedInputValue,
       }));
@@ -42,4 +42,4 @@ const TaskRenameFormWrapper = ({ taskData }: ITaskRenameFormWrapperProps): JSX.E
   />
 }
 
-export default TaskRenameFormWrapper;
+export default TaskEditFormWrapper;

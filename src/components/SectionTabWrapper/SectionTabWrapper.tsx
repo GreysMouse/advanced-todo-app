@@ -4,7 +4,7 @@ import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { POPUP_TYPES, POPUP_MESSAGES } from '../../config';
 
 import { setActivePath } from '../../utils/slices/pathRouterSlice';
-import { defineRenamingSection, removeSection } from '../../utils/slices/sectionsSlice';
+import { setRenamingSection, removeSection } from '../../utils/slices/sectionsSlice';
 import { removeTask } from '../../utils/slices/tasksSlice';
 import { enablePopup } from '../../utils/slices/popupSlice';
 
@@ -27,8 +27,8 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
     return sectionData.path === state.pathRouter.activePath;
   });
 
-  const isInRenamingState = useSelector((state: IState) => {
-    return state.sections.sectionInRenameState === sectionId;
+  const isRenaming = useSelector((state: IState) => {
+    return state.sections.renamingSection === sectionId;
   });
 
   const sectionTasksIds = useSelector((state: IState) => {
@@ -45,7 +45,7 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
   }
 
   const handleSectionRename = (): void => {
-    dispatch(defineRenamingSection(sectionId));
+    dispatch(setRenamingSection(sectionId));
   }
 
   const handleSectionRemove = (): void => {
@@ -61,7 +61,7 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
   return (
     <>
       {
-        isInRenamingState ?
+        isRenaming ?
           <SectionRenameFormWrapper
             sectionData={ sectionData }
             isSectionActive={ isActive }

@@ -1,7 +1,7 @@
 import { IComponentWithExtraClass } from '../abstractComponents/componentWithExtraClass';
 
 interface ITaskCardToolbarProps extends IComponentWithExtraClass {
-  onRenameButtonClick(): void;
+  onEditButtonClick(): void;
   onDeleteButtonClick(): void;
 }
 

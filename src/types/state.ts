@@ -9,13 +9,13 @@ interface ISectionsState {
   errorMessage: string;
   allSections: ISection[];
   isSectionAddFormOpen: boolean;
-  sectionInRenameState: string;
+  renamingSection: string;
 }
 
 interface ITasksState {
   allTasks: ITask[];
   selectedTask: string;
-  taskInRenameState: string;
+  editingTask: string;
 }
 
 interface IPopupState {

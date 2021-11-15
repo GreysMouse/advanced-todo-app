@@ -1,24 +1,25 @@
+import React from 'react';
+
 import { ITaskCardToolbarProps } from '../../types/components/taskCardToolbar';
 
 import './styles/task-card-toolbar.css';
 import './styles/task-card-toolbar__tool-button.css';
 import './styles/task-card-toolbar__tool-button_type_edit.css';
 import './styles/task-card-toolbar__tool-button_type_delete.css';
-import React from 'react';
 
 const TaskCardToolbar = ({
   extraClass = '',
-  onRenameButtonClick,
+  onEditButtonClick,
   onDeleteButtonClick
 }: ITaskCardToolbarProps): JSX.Element => {
   
-  const handleEditButtonClick = (evt: React.MouseEvent): void => {
+  const handleEditButtonClick = (evt: React.MouseEvent<HTMLButtonElement>): void => {
     evt.stopPropagation();
 
-    onRenameButtonClick();
+    onEditButtonClick();
   }
 
-  const handleDeleteButtonClick = (evt: React.MouseEvent): void => {
+  const handleDeleteButtonClick = (evt: React.MouseEvent<HTMLButtonElement>): void => {
     evt.stopPropagation();
 
     onDeleteButtonClick();

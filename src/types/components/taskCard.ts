@@ -3,9 +3,9 @@ import { ITask } from '../task';
 interface ITaskCardProps {
   taskData: ITask;
   isSelected: boolean;
-  isInRenamingState: boolean;
+  isEditing: boolean;
   onClick(): void;
-  onRename(): void;
+  onEdit(): void;
   onRemove(): void;
 }
 

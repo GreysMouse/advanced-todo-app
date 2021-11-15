@@ -25,7 +25,7 @@ const TaskCardInputForm = ({
     if (evt.key === KEYS.ESC) handleInputFieldClose();
   }
 
-  const handleSubmit = (evt: React.FormEvent): void => {
+  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
   
     if (isValid) {

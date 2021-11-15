@@ -13,7 +13,7 @@ const TaskAddingPanel = ({
   onSubmit
 }: ITaskAddingPanelProps): JSX.Element => {
   
-  const handleSubmit = (evt: React.FormEvent): void => {
+  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
     
     onSubmit();

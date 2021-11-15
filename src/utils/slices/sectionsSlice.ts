@@ -14,7 +14,7 @@ const initialState = {
     path: INITIAL_SECTION_PATH
   }],
   isSectionAddFormOpen: false,
-  sectionInRenameState: null
+  renamingSection: null
 }
 
 const setSections = createAsyncThunk('sections/setSections', () => {
@@ -43,11 +43,11 @@ const sectionsSlice = createSlice({
     closeInputField: (state) => {
       state.isSectionAddFormOpen = false;
     },
-    defineRenamingSection: (state, action) => {
-      state.sectionInRenameState = action.payload;
+    setRenamingSection: (state, action) => {
+      state.renamingSection = action.payload;
     },
     resetRenamingSection: (state) => {
-      state.sectionInRenameState = null;
+      state.renamingSection = null;
     }
   },
   extraReducers(builder) {
@@ -88,7 +88,7 @@ const sectionsSlice = createSlice({
 const {
   openInputField,
   closeInputField,
-  defineRenamingSection,
+  setRenamingSection,
   resetRenamingSection
 } = sectionsSlice.actions;
 
@@ -97,7 +97,7 @@ const sectionsReducer = sectionsSlice.reducer;
 export {
   openInputField,
   closeInputField,
-  defineRenamingSection,
+  setRenamingSection,
   resetRenamingSection,
   setSections,
   addSection,

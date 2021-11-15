@@ -6,8 +6,8 @@ import { POPUP_TYPES, POPUP_MESSAGES } from '../../config';
 import {
   setSelectedTask,
   resetSelectedTask,
-  removeTask,
-  defineRenamingTask
+  setEditingTask,
+  removeTask  
 } from '../../utils/slices/tasksSlice';
 import { enablePopup } from '../../utils/slices/popupSlice';
 
@@ -29,8 +29,8 @@ const TaskCardWrapper= ({ taskId }: ITaskCardWrapperProps): JSX.Element => {
     return state.tasks.selectedTask === taskId;
   });
 
-  const isInRenamingState = useSelector((state: IState) => {
-    return state.tasks.taskInRenameState === taskId;
+  const isEditing = useSelector((state: IState) => {
+    return state.tasks.editingTask === taskId;
   });
 
   const dispatch = useDispatch<TDispatch>();
@@ -39,8 +39,8 @@ const TaskCardWrapper= ({ taskId }: ITaskCardWrapperProps): JSX.Element => {
     isSelected ? dispatch(resetSelectedTask()) : dispatch(setSelectedTask(taskId));
   }
 
-  const handleCardRename = (): void => {
-    dispatch(defineRenamingTask(taskId));
+  const handleCardEdit = (): void => {
+    dispatch(setEditingTask(taskId));
   }
 
   const handleCardRemove = (): void => {
@@ -56,9 +56,9 @@ const TaskCardWrapper= ({ taskId }: ITaskCardWrapperProps): JSX.Element => {
       <TaskCard
         taskData={ taskData }
         isSelected={ isSelected }
-        isInRenamingState={ isInRenamingState }
+        isEditing={ isEditing }
         onClick={ handleCardClick }
-        onRename={ handleCardRename }
+        onEdit={ handleCardEdit }
         onRemove={ handleOpenPopup }
       />
       <PopupWrapper

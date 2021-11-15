@@ -1,7 +1,9 @@
 import React from 'react';
 
+import { KEYS } from '../../config';
+
 import TaskCardToolbar from '../TaskCardToolbar/TaskCardToolbar';
-import TaskRenameFormWrapper from '../TaskRenameFormWrapper/TaskRenameFormWrapper';
+import TaskEditFormWrapper from '../TaskEditFormWrapper/TaskEditFormWrapper';
 
 import { ITaskCardProps } from '../../types/components/taskCard';
 
@@ -11,15 +13,14 @@ import './styles/task-card__info.css';
 import './styles/task-card__entry.css';
 import './styles/task-card__entry_active.css';
 import './styles/task-card__toolbar.css';
-import { KEYS } from '../../config';
 
 const TaskCard = ({
   taskData,
   isSelected,
-  isInRenamingState,
+  isEditing,
   onClick,
   onRemove,
-  onRename
+  onEdit
 }: ITaskCardProps): JSX.Element => {
   
   const handleCardClick = (evt: React.MouseEvent<HTMLParagraphElement>): void => {
@@ -28,9 +29,9 @@ const TaskCard = ({
     onClick();
   }
 
-  const handleEscKeyUp = (evt: React.KeyboardEvent): void => {
+  const handleEscKeyUp = (evt: React.KeyboardEvent<HTMLLIElement>): void => {
     evt.stopPropagation();
-    console.log('wdwd')
+
     if (evt.key === KEYS.ESC) onClick();
   }
 
@@ -41,8 +42,8 @@ const TaskCard = ({
         <p className='task-card__info'>{ taskData.creationTime }</p>
       </div>
       {
-        isInRenamingState ?
-          <TaskRenameFormWrapper taskData={ taskData } />
+        isEditing ?
+          <TaskEditFormWrapper taskData={ taskData } />
         :
           <p
             id='task-card__entry'
@@ -54,9 +55,9 @@ const TaskCard = ({
           </p>
       }
       {
-        isSelected && !isInRenamingState && <TaskCardToolbar
+        isSelected && !isEditing && <TaskCardToolbar
           extraClass='task-card__toolbar'
-          onRenameButtonClick={ onRename }
+          onEditButtonClick={ onEdit }
           onDeleteButtonClick={ onRemove }
         />
       }
