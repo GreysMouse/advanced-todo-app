@@ -29,7 +29,7 @@ class SectionsAPI extends API{
   }
 
   updateSection(section: ISection) {
-    const { _id, name, path } = section;
+    const { _id, name } = section;
 
     return fetch(`${ this._baseURL }/sections/${ _id }`, {
       method: 'PATCH',
@@ -37,7 +37,7 @@ class SectionsAPI extends API{
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name, path })
+      body: JSON.stringify({ name })
     })
     .then(this._checkResponse);
   }

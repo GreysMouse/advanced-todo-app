@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { INITIAL_SECTION_ID, INITIAL_SECTION_NAME, INITIAL_SECTION_PATH } from '../../config';
+import { INITIAL_SECTION_ID, INITIAL_SECTION_NAME } from '../../config';
 
 import sectionsAPI from '../APIs/sectionsAPI';
 
@@ -11,10 +11,9 @@ const initialState = {
   allSections: [{
     _id: INITIAL_SECTION_ID,
     name: INITIAL_SECTION_NAME,
-    path: INITIAL_SECTION_PATH
   }],
   isAddFormOpen: false,
-  activeSection: INITIAL_SECTION_PATH,
+  activeSection: INITIAL_SECTION_NAME,
   renamingSection: null,
   deletingSection: null
 }

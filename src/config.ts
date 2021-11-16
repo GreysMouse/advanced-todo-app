@@ -1,8 +1,7 @@
 export const CURRENT_YEAR = new Date().getFullYear();
 
 export const INITIAL_SECTION_ID = '0';
-export const INITIAL_SECTION_NAME = 'default';
-export const INITIAL_SECTION_PATH = 'section-default';
+export const INITIAL_SECTION_NAME = 'section-default';
 
 export const SECTION_NAME_PREFIX = 'section-';
 

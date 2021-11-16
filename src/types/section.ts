@@ -1,6 +1,5 @@
 interface ISectionBody {
   name: string;
-  path: string;
 }
 
 interface ISection extends ISectionBody {

@@ -1,10 +1,6 @@
 type TObjectValue = string | number;
 
-interface IObject {
-  [ key: string ]: TObjectValue;
-}
-
-const getObjectIndexByKey = (array: IObject[], key: string, value: TObjectValue): number => {
+const getObjectIndexByKey = (array: any[], key: string, value: TObjectValue): number => {
   for (let i = 0; i < array.length; ++i) {
     if (array[ i ][ key ] === value) return i;
   }

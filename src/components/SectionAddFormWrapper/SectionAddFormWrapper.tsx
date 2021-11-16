@@ -44,8 +44,7 @@ const SectionAddFormWrapper = (): JSX.Element => {
       const sectionName = formattedInputValue;
 
       dispatch(addSection({
-        name: sectionName,
-        path: sectionName // needdelete
+        name: sectionName
       }));
 
       dispatch(setActiveSection(sectionName));

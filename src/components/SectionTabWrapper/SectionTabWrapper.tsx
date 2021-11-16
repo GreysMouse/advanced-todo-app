@@ -3,6 +3,7 @@ import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 
 import { POPUP_MESSAGES } from '../../config';
 
+import getObjectIndexByKey from '../../utils/getObjectIndexByKey';
 import { setActiveSection, setRenamingSection, removeSection } from '../../utils/slices/sectionsSlice';
 import { removeTask } from '../../utils/slices/tasksSlice';
 
@@ -22,9 +23,17 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
   const sectionData = useSelector((state: IState) => {
     return state.sections.allSections.find(section => section._id === sectionId);
   }) as ISection;
+
+  const sectionIndex = useSelector((state: IState) => {
+    return getObjectIndexByKey( state.sections.allSections, '_id', sectionId);
+  });
   
+  const prevSectionName = useSelector((state: IState) => {
+    return state.sections.allSections[ sectionIndex - 1 ]?.name;
+  });
+
   const isActive = useSelector((state: IState) => {
-    return sectionData.path === state.sections.activeSection;
+    return sectionData.name === state.sections.activeSection;
   });
 
   const isRenaming = useSelector((state: IState) => {
@@ -33,7 +42,7 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
 
   const sectionTasksIds = useSelector((state: IState) => {
     return state.tasks.allTasks.reduce((acc: string[], curr) => {
-      if (curr.section === sectionData.path) acc.push(curr._id);
+      if (curr.section === sectionData.name) acc.push(curr._id);
       return acc;
     }, []);
   }, shallowEqual);
@@ -41,7 +50,7 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
   const dispatch = useDispatch<TDispatch>();
 
   const handleSectionClick = (): void => {
-    dispatch(setActiveSection(sectionData.path));
+    dispatch(setActiveSection(sectionData.name));
   }
 
   const handleSectionRename = (): void => {
@@ -51,6 +60,8 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
   const handleSectionRemove = (): void => {
     dispatch(removeSection(sectionId));
     setIsDeleting(false);
+
+    if (isActive) dispatch(setActiveSection(prevSectionName));
 
     sectionTasksIds.forEach(taskId => dispatch(removeTask(taskId)));
   }

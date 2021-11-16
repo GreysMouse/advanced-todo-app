@@ -27,7 +27,7 @@ const SectionRenameFormWrapper = ({ sectionData, isSectionActive }: ISectionRena
   }, shallowEqual);
 
   const sectionTasks = useSelector((state: IState) => {
-    return state.tasks.allTasks.filter(task => task.section === sectionData.path);
+    return state.tasks.allTasks.filter(task => task.section === sectionData.name);
   }, shallowEqual);
 
   const isNewSectionNameUnique = isStringUnique(formattedInputValue, sectionsNames);
