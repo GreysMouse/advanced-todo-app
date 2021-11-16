@@ -5,7 +5,7 @@ import { POPUP_MESSAGES } from '../../config';
 
 import { setActivePath } from '../../utils/slices/pathRouterSlice';
 import { setRenamingSection, removeSection } from '../../utils/slices/sectionsSlice';
-import { editTask, removeTask } from '../../utils/slices/tasksSlice';
+import { removeTask } from '../../utils/slices/tasksSlice';
 
 import SectionTab from '../SectionTab/SectionTab';
 import SectionRenameFormWrapper from '../SectionRenameFormWrapper/SectionRenameFormWrapper';
@@ -32,8 +32,11 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
     return state.sections.renamingSection === sectionId;
   });
 
-  const sectionTasks = useSelector((state: IState) => {
-    return state.tasks.allTasks.filter(task => task.section === sectionData.path);
+  const sectionTasksIds = useSelector((state: IState) => {
+    return state.tasks.allTasks.reduce((acc: string[], curr) => {
+      if (curr.section === sectionData.path) acc.push(curr._id);
+      return acc;
+    }, []);
   }, shallowEqual);
 
   const dispatch = useDispatch<TDispatch>();
@@ -44,17 +47,13 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
 
   const handleSectionRename = (): void => {
     dispatch(setRenamingSection(sectionId));
-
-    // sectionTasksIds.forEach(taskId => dispatch(editTask({
-    //   ... 
-    // })));
   }
 
   const handleSectionRemove = (): void => {
     dispatch(removeSection(sectionId));
     setIsDeleting(false);
 
-    sectionTasks.forEach(task => dispatch(removeTask(task._id)));
+    sectionTasksIds.forEach(taskId => dispatch(removeTask(taskId)));
   }
 
   const handlePopupOpen = (): void => {
