@@ -15,8 +15,8 @@ const TaskAddingPanelWrapper = (): JSX.Element => {
   
   const [ inputValue, setInputValue ] = React.useState<string>('');
 
-  const activePath = useSelector((state: IState) => {
-    return state.pathRouter.activePath;
+  const activeSection = useSelector((state: IState) => {
+    return state.sections.activeSection;
   });
 
   const dispatch = useDispatch<TDispatch>();  
@@ -32,7 +32,7 @@ const TaskAddingPanelWrapper = (): JSX.Element => {
       const creationTime = getFormattedTimeString();
 
       dispatch(addTask({
-        section: activePath,
+        section: activeSection,
         entry: formattedInputValue,
         creationDate: creationDate,
         creationTime: creationTime

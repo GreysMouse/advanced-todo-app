@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import getObjectIndexByKey from './utils/getObjectIndexByKey';
 
-import { pathRouterReducer } from './utils/slices/pathRouterSlice';
 import { sectionsReducer } from './utils/slices/sectionsSlice';
 import { tasksReducer } from './utils/slices/tasksSlice';
 
@@ -12,7 +11,7 @@ const togglePathMiddleware = (storeAPI: any) => (next: any) => (action: any) => 
     const indexOfRemoved = getObjectIndexByKey(allSections, '_id', action.payload._id);
 
     storeAPI.dispatch({
-      type: 'pathRouter/setActivePath',
+      type: 'sections/setActiveSection',
       payload: allSections[indexOfRemoved - 1].path
     });
   }
@@ -21,7 +20,6 @@ const togglePathMiddleware = (storeAPI: any) => (next: any) => (action: any) => 
 
 const store = configureStore({
   reducer: {
-    pathRouter: pathRouterReducer,
     sections: sectionsReducer,
     tasks: tasksReducer
   },

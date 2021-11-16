@@ -6,11 +6,11 @@ import { IState } from '../../types/state';
 
 const SectionWrapper= (): JSX.Element => {
 
-  const activePath = useSelector((state: IState) => {
-    return state.pathRouter.activePath;
+  const activeSection = useSelector((state: IState) => {
+    return state.sections.activeSection;
   });
 
-  return <Section path={ activePath } />
+  return <Section name={ activeSection } />
 }
 
 export default SectionWrapper;

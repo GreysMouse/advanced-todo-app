@@ -13,7 +13,8 @@ const initialState = {
     name: INITIAL_SECTION_NAME,
     path: INITIAL_SECTION_PATH
   }],
-  isSectionAddFormOpen: false,
+  isAddFormOpen: false,
+  activeSection: INITIAL_SECTION_PATH,
   renamingSection: null,
   deletingSection: null
 }
@@ -39,10 +40,13 @@ const sectionsSlice = createSlice({
   initialState,
   reducers: {
     openInputField: (state) => {
-      state.isSectionAddFormOpen = true;
+      state.isAddFormOpen = true;
     },
     closeInputField: (state) => {
-      state.isSectionAddFormOpen = false;
+      state.isAddFormOpen = false;
+    },
+    setActiveSection: (state, action) => {
+      state.activeSection = action.payload;
     },
     setRenamingSection: (state, action) => {
       state.renamingSection = action.payload;
@@ -91,6 +95,7 @@ const sectionsSlice = createSlice({
 const {
   openInputField,
   closeInputField,
+  setActiveSection,
   setRenamingSection,
   resetRenamingSection
 } = sectionsSlice.actions;
@@ -100,6 +105,7 @@ const sectionsReducer = sectionsSlice.reducer;
 export {
   openInputField,
   closeInputField,
+  setActiveSection,
   setRenamingSection,
   resetRenamingSection,
   setSections,

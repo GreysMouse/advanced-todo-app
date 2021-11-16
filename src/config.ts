@@ -4,6 +4,8 @@ export const INITIAL_SECTION_ID = '0';
 export const INITIAL_SECTION_NAME = 'default';
 export const INITIAL_SECTION_PATH = 'section-default';
 
+export const SECTION_NAME_PREFIX = 'section-';
+
 export const NOTE_MIN_LENGTH = 1;
 export const NOTE_MAX_LENGTH = 96;
 

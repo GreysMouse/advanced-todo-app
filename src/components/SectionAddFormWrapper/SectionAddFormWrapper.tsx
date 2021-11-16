@@ -1,10 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 
+import { SECTION_NAME_PREFIX } from '../../config';
+
 import isStringUnique from '../../utils/isStringUnique';
 import getFormattedString from '../../utils/getFormattedString';
-import { addSection, closeInputField } from '../../utils/slices/sectionsSlice';
-import { setActivePath } from '../../utils/slices/pathRouterSlice';
+import { setActiveSection, addSection, closeInputField } from '../../utils/slices/sectionsSlice';
 
 import SidebarInputForm from '../SidebarInputForm/SidebarInputForm';
 
@@ -14,16 +15,18 @@ import { TDispatch } from '../../store';
 const SectionAddFormWrapper = (): JSX.Element => {
 
   const [ inputValue, setInputValue ] = React.useState<string>('');
+  
+  const formattedInputValue = SECTION_NAME_PREFIX + getFormattedString(inputValue, 'lowercase');
 
   const isSectionAddFormOpen = useSelector((state: IState) => {
-    return state.sections.isSectionAddFormOpen;
+    return state.sections.isAddFormOpen;
   });
 
-  const allSectionsNames = useSelector((state: IState) => {
-    return state.sections.allSections.map((section) => section.name);
+  const sectionsNames = useSelector((state: IState) => {
+    return state.sections.allSections.map(section => section.name);
   }, shallowEqual);
 
-  const isNewSectionNameUnique = isStringUnique(getFormattedString(inputValue, 'lowercase'), allSectionsNames);
+  const isNewSectionNameUnique = isStringUnique(formattedInputValue, sectionsNames);
 
   const dispatch = useDispatch<TDispatch>();  
 
@@ -37,15 +40,15 @@ const SectionAddFormWrapper = (): JSX.Element => {
   }
 
   const handleSubmit = (): void => {
-    if (inputValue !== '') {
-      const formattedInputValue = getFormattedString(inputValue, 'lowercase');
+    if (inputValue !== '') {     
+      const sectionName = formattedInputValue;
 
       dispatch(addSection({
-        name: formattedInputValue,
-        path: `section-${ formattedInputValue }`
+        name: sectionName,
+        path: sectionName // needdelete
       }));
 
-      dispatch(setActivePath(`section-${ formattedInputValue }`));
+      dispatch(setActiveSection(sectionName));
     }
   }
 

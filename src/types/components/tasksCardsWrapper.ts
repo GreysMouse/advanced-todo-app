@@ -1,5 +1,5 @@
 interface ITasksCardsWrapperProps {
-  path: string;
+  sectionName: string;
 }
 
 export type { ITasksCardsWrapperProps };

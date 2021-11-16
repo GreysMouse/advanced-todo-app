@@ -3,8 +3,7 @@ import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 
 import { POPUP_MESSAGES } from '../../config';
 
-import { setActivePath } from '../../utils/slices/pathRouterSlice';
-import { setRenamingSection, removeSection } from '../../utils/slices/sectionsSlice';
+import { setActiveSection, setRenamingSection, removeSection } from '../../utils/slices/sectionsSlice';
 import { removeTask } from '../../utils/slices/tasksSlice';
 
 import SectionTab from '../SectionTab/SectionTab';
@@ -25,7 +24,7 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
   }) as ISection;
   
   const isActive = useSelector((state: IState) => {
-    return sectionData.path === state.pathRouter.activePath;
+    return sectionData.path === state.sections.activeSection;
   });
 
   const isRenaming = useSelector((state: IState) => {
@@ -42,7 +41,7 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
   const dispatch = useDispatch<TDispatch>();
 
   const handleSectionClick = (): void => {
-    dispatch(setActivePath(sectionData.path));
+    dispatch(setActiveSection(sectionData.path));
   }
 
   const handleSectionRename = (): void => {

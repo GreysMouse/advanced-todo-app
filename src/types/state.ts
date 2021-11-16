@@ -1,14 +1,11 @@
 import { ISection } from './section';
 import { ITask } from './task';
 
-interface IPathRouterState {
-  activePath: string;
-}
-
 interface ISectionsState {
   errorMessage: string;
   allSections: ISection[];
-  isSectionAddFormOpen: boolean;
+  isAddFormOpen: boolean;
+  activeSection: string;
   renamingSection: string;
 }
 
@@ -19,7 +16,6 @@ interface ITasksState {
 }
 
 interface IState {
-  pathRouter: IPathRouterState,
   sections: ISectionsState,
   tasks: ITasksState
 }

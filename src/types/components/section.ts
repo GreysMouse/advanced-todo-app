@@ -1,5 +1,5 @@
 interface ISectionProps {
-  path: string;
+  name: string;
 }
 
 export type { ISectionProps };
