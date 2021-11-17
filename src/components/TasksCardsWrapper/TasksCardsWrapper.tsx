@@ -7,14 +7,14 @@ import { ITasksCardsWrapperProps } from '../../types/components/tasksCardsWrappe
 
 const TasksCardsWrapper= ({ sectionName }: ITasksCardsWrapperProps): JSX.Element => {
 
-  const sectiontasksIds = useSelector((state: IState) => {
+  const sectionTasksIds = useSelector((state: IState) => {
     return state.tasks.allTasks.reduce((acc: string[], curr) => {
       if (curr.section === sectionName) acc.push(curr._id);
       return acc;
     }, [])
   }, shallowEqual);
 
-  return <TasksCards tasksIds={ sectiontasksIds } />;
+  return <TasksCards tasksIds={ sectionTasksIds } />;
 }
 
 export default TasksCardsWrapper;

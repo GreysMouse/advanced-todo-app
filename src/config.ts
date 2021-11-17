@@ -9,12 +9,7 @@ export const NOTE_MIN_LENGTH = 1;
 export const NOTE_MAX_LENGTH = 96;
 
 export const TASK_INPUT_FIELD_PLACEHOLDER = 'Type TODO message here';
-export const NOTE_TEXTAREA_MAX_ROWS = 10;
-
-export const TASK_CARD_SELECTION_DELAY = 1000;
-
 export const EMPTY_TASKS_LIST_MESSAGE = 'There are no TODOs here yet';
-
 export const TASK_ADD_BUTTON_TEXT = 'New TODO';
 
 export enum DEVICE_TYPES {
@@ -35,5 +30,9 @@ export enum KEYS {
   LEFT = 'ArrowLeft',
   RIGHT = 'ArrowRight'
 }
+
+export const TASKS_LIST_AUTOSCROLL_OPTIONS: ScrollIntoViewOptions = {
+  behavior: 'smooth'
+};
 
 export const BASE_URL = 'http://localhost:4000';
