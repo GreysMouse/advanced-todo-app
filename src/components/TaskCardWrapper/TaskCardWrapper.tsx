@@ -57,7 +57,7 @@ const TaskCardWrapper= ({ taskId }: ITaskCardWrapperProps): JSX.Element => {
   }
 
   return (
-    <>
+    <li>
       <TaskCard
         taskData={ taskData }
         isSelected={ isSelected }
@@ -73,7 +73,7 @@ const TaskCardWrapper= ({ taskId }: ITaskCardWrapperProps): JSX.Element => {
           onCancel={ handlePopupCancel }
         />
       }
-    </>
+    </li>
   );
 }
 

@@ -29,14 +29,14 @@ const TaskCard = ({
     onClick();
   }
 
-  const handleEscKeyUp = (evt: React.KeyboardEvent<HTMLLIElement>): void => {
+  const handleEscKeyUp = (evt: React.KeyboardEvent<HTMLDivElement>): void => {
     evt.stopPropagation();
 
     if (evt.key === KEYS.ESC) onClick();
   }
 
   return (
-    <li className='task-card' onKeyUp={ handleEscKeyUp }>
+    <div className='task-card' onKeyUp={ handleEscKeyUp }>
       <div className='task-card__info-container'>
         <p className='task-card__info'>{ taskData.creationDate }</p>
         <p className='task-card__info'>{ taskData.creationTime }</p>
@@ -61,7 +61,7 @@ const TaskCard = ({
           onDeleteButtonClick={ onRemove }
         />
       }
-    </li>
+    </div>
   );
 }
 

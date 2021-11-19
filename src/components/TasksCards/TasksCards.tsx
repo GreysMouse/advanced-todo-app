@@ -12,7 +12,7 @@ import './styles/tasks-cards.css';
 import './styles/section__empty-list-message.css';
 
 const TasksCards = ({ tasksIds }: ITasksCardsProps): JSX.Element => {
-  
+
   const anchorElement = React.useRef<HTMLLIElement>(null);
 
   const prevTasksIds = usePrevious<string[]>(tasksIds);

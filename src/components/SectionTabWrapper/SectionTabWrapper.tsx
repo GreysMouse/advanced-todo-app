@@ -75,7 +75,7 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
   }
   
   return (
-    <>
+    <li>
       {
         isRenaming ?
           <SectionRenameFormWrapper
@@ -98,7 +98,7 @@ const SectionTabWrapper= ({ sectionId }: ISectionTabWrapperProps): JSX.Element =
             onCancel={ handlePopupCancel }
           />
         }
-    </>
+    </li>
   );
 }
 

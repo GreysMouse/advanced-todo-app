@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { KEYS } from '../../config';
+
 import { setSections } from '../../utils/slices/sectionsSlice';
 import { resetEditingTask, resetSelectedTask, setTasks } from '../../utils/slices/tasksSlice';
 
@@ -15,6 +17,8 @@ import './styles/app.css';
 import './styles/app__container.css';
 
 const App = (): JSX.Element => {
+
+  const appElement = React.useRef<HTMLDivElement>(null);
 
   const selectedTask = useSelector((state: IState) => {
     return state.tasks.selectedTask;
@@ -34,14 +38,34 @@ const App = (): JSX.Element => {
     }
   }
 
+  const handleAppKeyUp = (evt: React.KeyboardEvent<HTMLDivElement>): void => {
+    if (evt.key === KEYS.ESC) {
+      if (selectedTask) dispatch(resetSelectedTask());
+    }
+  }
+
   React.useEffect(() => {
     dispatch(setSections());
     dispatch(setTasks());
+
+    appElement?.current?.focus();
   }, [ dispatch ]);
+
+
+  // Return focus to App after inputs close //
+  React.useEffect(() => {
+    if (!editingTask) appElement?.current?.focus();
+  }, [ editingTask ]);
 
   return (
     <div className='app'>
-      <div className='app__container' onClick={ handleAppClick }>
+      <div
+        className='app__container'
+        ref={ appElement }
+        tabIndex={ 1 }
+        onClick={ handleAppClick }
+        onKeyUp={ handleAppKeyUp }
+      >
         <Header />
         <Main />
         <Footer />

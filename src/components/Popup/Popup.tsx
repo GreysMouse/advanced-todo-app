@@ -44,7 +44,7 @@ const Popup = ({ message, onSubmit, onCancel }: IPopupProps): JSX.Element => {
     onSubmit();
   }
 
-  const handleCancelClick = (evt: React.MouseEvent<HTMLButtonElement>): void => {
+  const handleCancelClick = (evt: React.MouseEvent<HTMLElement>): void => {
     evt.stopPropagation();
 
     onCancel();
@@ -53,9 +53,14 @@ const Popup = ({ message, onSubmit, onCancel }: IPopupProps): JSX.Element => {
   return ReactDOM.createPortal(
     <div
       className='popup'
+      tabIndex={ 1 }
+      onClick={ handleCancelClick }
       onKeyUp={ handleKeyUp }
     >
-      <div className='popup__container'>
+      <div
+        className='popup__container'
+        onClick={ evt => evt.stopPropagation() }
+      >
         <p className='popup__heading'>Warning</p>
         <p className='popup__message'>{ message }</p>
         <div className='popup__buttons-container'>

@@ -30,7 +30,7 @@ const SectionTab = ({ sectionData, isActive, onClick, onRename, onRemove }: ISec
   }
 
   return (
-    <li
+    <div
       className={ 'section-tab' + (isActive ? ' section-tab_active' : '') }
       onClick={ onClick }
     >
@@ -51,7 +51,7 @@ const SectionTab = ({ sectionData, isActive, onClick, onRename, onRemove }: ISec
           />
         </div>
       }    
-    </li>
+    </div>
   );
 }
 
