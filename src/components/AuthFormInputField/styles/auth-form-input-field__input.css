@@ -1,0 +1,22 @@
+.auth-form-input-field__input {
+  margin: 4px 0 0;
+  padding: 6px 10px;
+  width: 100%;
+  border: none;
+  border-left: 1px solid #1d4189;
+  border-bottom: 1px solid #1d4189;
+  border-bottom-left-radius: 6px;
+  box-sizing: border-box;
+  outline: none;
+  background-color: #0000;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 1.6px;
+  color: #fff;
+}
+
+.auth-form-input-field__input:focus {
+  border-color: #c0c0c0;
+}

@@ -7,6 +7,8 @@ export const SECTION_NAME_PREFIX = 'section-';
 
 export const NOTE_MIN_LENGTH = 1;
 export const NOTE_MAX_LENGTH = 96;
+export const USER_NAME_MIN_LENGTH = 2;
+export const USER_NAME_MAX_LENGTH = 30;
 
 export const TASK_INPUT_FIELD_PLACEHOLDER = 'Type TODO message here';
 export const EMPTY_TASKS_LIST_MESSAGE = 'There are no TODOs here yet';
@@ -30,9 +32,23 @@ export enum KEYS {
   LEFT = 'ArrowLeft',
   RIGHT = 'ArrowRight'
 }
+export enum PAGE_ROUTES {
+  SIGNUP = '/signup',
+  SIGNIN = '/signin',
+  MAIN = '/'
+}
+
+export enum FORM_HEADINGS {
+  POPUP = 'Warning',
+  REGISTER = 'Welcome to Advanced TODO App !\nRegister a new user:',
+  LOGIN = 'Login'
+}
 
 export const TASKS_LIST_AUTOSCROLL_OPTIONS: ScrollIntoViewOptions = {
   behavior: 'smooth'
 };
+
+export const USER_NAME_PATTERN = /^[A-Za-zА-Яа-я -]*$/;
+
 
 export const BASE_URL = 'http://localhost:4000';

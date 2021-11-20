@@ -1,5 +1,9 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
+import { PAGE_ROUTES } from '../../config';
+
+import RegisterPage from '../RegisterPage/RegisterPage';
 import Sidebar from '../Sidebar/Sidebar';
 import SidebarHeader from '../SidebarHeader/SidebarHeader';
 import SectionTabsWrapper from '../SectionTabsWrapper/SectionTabsWrapper';
@@ -11,12 +15,22 @@ import './styles/main.css';
 const Main = (): JSX.Element => {
   return (
     <main className='main'>
-      <Sidebar>
-        <SidebarHeader caption='sections' />
-        <SectionTabsWrapper />
-        <SectionAddButtonWrapper />
-      </Sidebar>
-      <SectionWrapper />
+      <Switch>
+        <Route path={ PAGE_ROUTES.SIGNUP }>
+          <RegisterPage />
+        </Route>
+        <Route path='/signin'>
+
+        </Route>
+        <Route exact path='/'>
+          <Sidebar>
+            <SidebarHeader caption='sections' />
+            <SectionTabsWrapper />
+            <SectionAddButtonWrapper />
+          </Sidebar>
+          <SectionWrapper />
+        </Route>
+      </Switch>
     </main>
   );
 }

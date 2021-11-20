@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { KEYS } from '../../config';
+import { KEYS, FORM_HEADINGS } from '../../config';
 
 import { IPopupProps } from '../../types/components/popup';
 
@@ -61,7 +61,7 @@ const Popup = ({ message, onSubmit, onCancel }: IPopupProps): JSX.Element => {
         className='popup__container'
         onClick={ evt => evt.stopPropagation() }
       >
-        <p className='popup__heading'>Warning</p>
+        <p className='popup__heading'>{ FORM_HEADINGS.POPUP }</p>
         <p className='popup__message'>{ message }</p>
         <div className='popup__buttons-container'>
           <button
