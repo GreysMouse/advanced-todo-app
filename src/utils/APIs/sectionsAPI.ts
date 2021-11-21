@@ -4,7 +4,7 @@ import { BASE_URL } from '../../config';
 
 import { ISectionBody, ISection } from '../../types/section';
 
-class SectionsAPI extends API{
+class SectionsAPI extends API {
   getSections() {
     return fetch(`${ this._baseURL }/sections`, {
       method: 'GET',

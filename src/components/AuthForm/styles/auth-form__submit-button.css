@@ -1,0 +1,21 @@
+.auth-form__submit-button {
+  margin: 60px 0 0;
+  padding: 8px 10px;
+  width: 80%;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  background-color: #8bc34a;
+  transition: background-color 0.15s linear;
+
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.6px;
+  color: #000;
+}
+
+.auth-form__submit-button:hover {
+  cursor: pointer;
+  background-color: #cddc39;
+}

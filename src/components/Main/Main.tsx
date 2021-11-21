@@ -17,7 +17,7 @@ const Main = (): JSX.Element => {
     <main className='main'>
       <Switch>
         <Route path={ PAGE_ROUTES.SIGNUP }>
-          <RegisterPage />
+          <RegisterPage onSubmit={ () => {} } />
         </Route>
         <Route path='/signin'>
 

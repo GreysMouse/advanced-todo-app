@@ -4,7 +4,7 @@ import { BASE_URL } from '../../config';
 
 import { ITaskBody, ITask } from '../../types/task';
 
-class TasksAPI extends API{
+class TasksAPI extends API {
   getTasks() {
     return fetch(`${ this._baseURL }/tasks`, {
       method: 'GET',

@@ -13,6 +13,7 @@ export const USER_NAME_MAX_LENGTH = 30;
 export const TASK_INPUT_FIELD_PLACEHOLDER = 'Type TODO message here';
 export const EMPTY_TASKS_LIST_MESSAGE = 'There are no TODOs here yet';
 export const TASK_ADD_BUTTON_TEXT = 'New TODO';
+export const REGISTER_SUBMIT_BUTTON_TEXT = 'Sign up';
 
 export enum DEVICE_TYPES {
   MOBILE = 'mobile',
