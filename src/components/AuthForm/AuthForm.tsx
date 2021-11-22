@@ -5,6 +5,7 @@ import { IAuthFormProps } from '../../types/components/authForm';
 import './styles/auth-form.css';
 import './styles/auth-form__error-message.css';
 import './styles/auth-form__submit-button.css';
+import './styles/auth-form__submit-button_disabled.css';
 
 const AuthForm = ({
   children,
@@ -28,7 +29,7 @@ const AuthForm = ({
       { children }
       <p className='auth-form__error-message'>{ errorMessage }</p>
       <button
-        className='auth-form__submit-button'
+        className={ 'auth-form__submit-button' }
         type='submit'
       >
         { submitButtonText }

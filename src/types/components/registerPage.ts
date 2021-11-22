@@ -1,5 +1,7 @@
+import { IUserBody } from '../user';
+
 interface IRegisterPageProps {
-  onSubmit(): void;
+  onRegisterSubmit(user: IUserBody): void;
 }
 
-export type { IRegisterPageProps };
+export type { IRegisterPageProps }; 

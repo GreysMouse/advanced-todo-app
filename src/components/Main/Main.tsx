@@ -3,7 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 
 import { PAGE_ROUTES } from '../../config';
 
-import RegisterPage from '../RegisterPage/RegisterPage';
+import RegisterPageWrapper from '../RegisterPageWrapper/RegisterPageWrapper';
+
 import Sidebar from '../Sidebar/Sidebar';
 import SidebarHeader from '../SidebarHeader/SidebarHeader';
 import SectionTabsWrapper from '../SectionTabsWrapper/SectionTabsWrapper';
@@ -12,12 +13,13 @@ import SectionWrapper from '../SectionWrapper/SectionWrapper';
 
 import './styles/main.css';
 
+
 const Main = (): JSX.Element => {
   return (
     <main className='main'>
       <Switch>
         <Route path={ PAGE_ROUTES.SIGNUP }>
-          <RegisterPage onSubmit={ () => {} } />
+          <RegisterPageWrapper />
         </Route>
         <Route path='/signin'>
 

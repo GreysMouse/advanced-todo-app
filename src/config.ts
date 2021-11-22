@@ -7,13 +7,30 @@ export const SECTION_NAME_PREFIX = 'section-';
 
 export const NOTE_MIN_LENGTH = 1;
 export const NOTE_MAX_LENGTH = 96;
+
 export const USER_NAME_MIN_LENGTH = 2;
 export const USER_NAME_MAX_LENGTH = 30;
+export const USER_NAME_PATTERN = /^[a-zA-Zа-яА-Я-_0-9]+$/;
+
+export const USER_EMAIL_PATTERN = /^[a-zA-Z0-9.]+@[a-z]+(.[a-z]{2,})+$/;
+
+export const USER_PASSWORD_MIN_LENGTH = 8;
+export const USER_PASSWORD_PATTERN = /^\S+$/;
 
 export const TASK_INPUT_FIELD_PLACEHOLDER = 'Type TODO message here';
 export const EMPTY_TASKS_LIST_MESSAGE = 'There are no TODOs here yet';
 export const TASK_ADD_BUTTON_TEXT = 'New TODO';
 export const REGISTER_SUBMIT_BUTTON_TEXT = 'Sign up';
+
+export const FORM_VALIDATION_MESSAGES = {
+  BLANK_FIELDS: 'You should fill in all the fields!',
+  INVALID_NAME_LENGTH: `Name length should be between ${ USER_NAME_MIN_LENGTH } and ${ USER_NAME_MAX_LENGTH } characters!`,
+  INVALID_NAME_PATTERN: 'Name can only contain alphabet symbols, numbers and "-", "_" characters!',
+  INVALID_EMAIL_PATTERN: 'You entered an incorrect E-mail address!',
+  INVALID_PASSWORD_LENGTH: `Password length should be at least ${ USER_PASSWORD_MIN_LENGTH } characters!`,
+  INVALID_PASSWORD_PATTERN: 'Password shouldn`t contain any whitespace symbols!',
+  PASSWORDS_MISMATCH: 'Passwords must be the same!'
+} 
 
 export enum DEVICE_TYPES {
   MOBILE = 'mobile',
@@ -48,8 +65,5 @@ export enum FORM_HEADINGS {
 export const TASKS_LIST_AUTOSCROLL_OPTIONS: ScrollIntoViewOptions = {
   behavior: 'smooth'
 };
-
-export const USER_NAME_PATTERN = /^[A-Za-zА-Яа-я -]*$/;
-
 
 export const BASE_URL = 'http://localhost:4000';

@@ -1,0 +1,16 @@
+.auth-form-checkbox__label {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  column-gap: 12px;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 1.6px;
+  color: #c0c0c0;
+}
+
+.auth-form-checkbox__label:hover {
+  cursor: pointer;
+}
